@@ -1,8 +1,8 @@
-<script src="../assets/js/core/popper.min.js"></script>
-<script src="../assets/js/core/bootstrap.min.js"></script>
-<script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-<script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-<script src="../assets/js/plugins/chartjs.min.js"></script>
+<script src="{{asset('assets/js/core/popper.min.js')}}"></script>
+<script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
+<script src="{{asset('assets/js/plugins/chartjs.min.js')}}"></script>
 <script>
     var ctx1 = document.getElementById("chart-line").getContext("2d");
 
@@ -98,7 +98,7 @@
 
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-<script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+<script src="{{asset('assets/js/argon-dashboard.min.js?v=2.0.4')}}"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317"
     integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA=="
     data-cf-beacon='{"rayId":"854140a5eb451936","version":"2024.2.0","token":"1b7cbb72744b40c580f8633c6b62637e"}'

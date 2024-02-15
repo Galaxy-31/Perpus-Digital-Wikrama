@@ -22,26 +22,20 @@ Auth::routes();
 
 // autentikasi Users
 Route::middleware('auth')->group(function () {
-
     // menu utama
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     // hanya admin yang bisa akses
     Route::middleware('role:Admin')->group(function () {
-
         Route::get('/admin', function () {
             return view('components.master');
         })->name('admin');
-
     });
 
     // hanya petugas yang bisa akses
     Route::middleware('role:Petugas')->group(function () {
-
         Route::get('/petugas', function () {
             return view('components.master');
         })->name('petugas');
-
     });
-
 });

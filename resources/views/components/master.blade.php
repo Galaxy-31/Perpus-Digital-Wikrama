@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,13 +13,13 @@
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
 
 
-@include('components.layouts.sidebar')
+    @include('components.layouts.sidebar')
 
 
     <main class="main-content position-relative border-radius-lg ">
 
 
-    @include('components.layouts.navbar')
+        @include('components.layouts.navbar')
 
 
 
@@ -30,7 +29,7 @@
 
 
             @include('components.layouts.card')
-            
+
             <div class="row mt-4">
                 <div class="col-lg-7 mb-lg-0 mb-4">
                     <div class="card z-index-2 h-100">
@@ -56,8 +55,7 @@
                                     style="background-image: url('../assets/img/carousel-1.jpg');
       background-size: cover;">
                                     <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                        <div
-                                            class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+                                        <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
                                             <i class="ni ni-camera-compact text-dark opacity-10"></i>
                                         </div>
                                         <h5 class="text-white mb-1">Get started with Argon</h5>
@@ -69,8 +67,7 @@
                                     style="background-image: url('../assets/img/carousel-2.jpg');
       background-size: cover;">
                                     <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                        <div
-                                            class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+                                        <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
                                             <i class="ni ni-bulb-61 text-dark opacity-10"></i>
                                         </div>
                                         <h5 class="text-white mb-1">Faster way to create web pages</h5>
@@ -81,8 +78,7 @@
                                 <div class="carousel-item h-100"
                                     style="background-image: url('../assets/img/carousel-3.jpg'); background-size: cover;">
                                     <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                        <div
-                                            class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+                                        <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
                                             <i class="ni ni-trophy text-dark opacity-10"></i>
                                         </div>
                                         <h5 class="text-white mb-1">Share with us your design tips!</h5>
@@ -106,44 +102,44 @@
                 </div>
             </div>
 
-                <footer class="footer pt-3  ">
-    <div class="container-fluid">
-        <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-                <div class="copyright text-center text-sm text-muted text-lg-start">
-                    ©
-                    <script>
-                        document.write(new Date().getFullYear())
-                    </script>,
-                    made with <i class="fa fa-heart"></i> by
-                    <a href="https://www.creative-tim.com" class="font-weight-bold"
-                        target="_blank">Creative Tim</a>
-                    for a better web.
+            <footer class="footer pt-3  ">
+                <div class="container-fluid">
+                    <div class="row align-items-center justify-content-lg-between">
+                        <div class="col-lg-6 mb-lg-0 mb-4">
+                            <div class="copyright text-center text-sm text-muted text-lg-start">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script>,
+                                made with <i class="fa fa-heart"></i> by
+                                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative
+                                    Tim</a>
+                                for a better web.
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com" class="nav-link text-muted"
+                                        target="_blank">Creative Tim</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted"
+                                        target="_blank">About Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com/blog" class="nav-link text-muted"
+                                        target="_blank">Blog</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
+                                        target="_blank">License</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-6">
-                <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                    <li class="nav-item">
-                        <a href="https://www.creative-tim.com" class="nav-link text-muted"
-                            target="_blank">Creative Tim</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted"
-                            target="_blank">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://www.creative-tim.com/blog" class="nav-link text-muted"
-                            target="_blank">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
-                            target="_blank">License</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
+            </footer>
         </div>
     </main>
     <div class="fixed-plugin">
