@@ -34,7 +34,7 @@ class PeminjamanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            
+
             ]);
 
         $cek = Anggota::where('nama', $request->nama)->first();
@@ -42,13 +42,13 @@ class PeminjamanController extends Controller
         Peminjaman::create([
             'IUD' => 'P'.$nomor++,
             'tgl_pinjam' => Carbon::now(),
-            'tgl_balik' => Carbon::parse(Carbon::now())->addDays(14)->format('Y-m-d'),
+            'tgl_balik' => Carbon::parse(Carbon::now())->addDays(5)->format('Y-m-d'),
             'judul' => $request->judul,
             'nama_pet' => $request->nama_pet,
             'nama' => $request->nama,
             'no_hp' => $cek->no_hp,
         ]);
-     
+
         return redirect()->route('peminjamans.index')->with('success', 'peminjam Berhasil Di tambahkan!');
 
         // return redirect()
@@ -84,7 +84,7 @@ class PeminjamanController extends Controller
         ]);
 
         $cek = Anggota::where('nama', $request->nama)->first();
-    
+
     Peminjaman::edit([
         'IUD' => $cek->IUD,
         'tgl_pinjam' => Carbon::now(),

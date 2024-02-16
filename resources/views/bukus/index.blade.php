@@ -4,10 +4,15 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
+
                     <h2>Daftar buku</h2>
                 </div>
-                <div class="pull-right">
-                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
+                <pre>
+                    <pre>
+                    </pre>
+                </pre>
+                <div class align="flex-right">
+                    <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#create">
                         Masukan Buku Baru
                     </a>
                 </div>
@@ -45,8 +50,8 @@
                             <a class="btn btn-primary" href="{{ route('bukus.edit', $buku->id) }}"><i
                                     class="fa-solid fa-pen-to-square"></i></a>
                             <!-- <button type="button"  data-toggle="modal"
-                                    data-target="#exampleModalCenter">
-                                </button>  -->
+                                        data-target="#exampleModalCenter">
+                                    </button>  -->
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger"
@@ -63,7 +68,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -71,12 +76,12 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-lg-12 margin-tb">
-                                <div class="pull-left">
-                                    <h2>Tambahkan buku</h2>
+                                <div class align="center">
+                                    <h2>Tambahkan Buku</h2>
                                 </div>
                                 <!-- <div class="pull-right">
-                                        <a class="btn btn-primary" href="{{ route('bukus.index') }}"> Back</a>
-                                    </div> -->
+                                            <a class="btn btn-primary" href="{{ route('bukus.index') }}"> Back</a>
+                                        </div> -->
                             </div>
                         </div>
                         @if ($errors->any())
@@ -130,28 +135,28 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Tahun Dirilis:</strong>
-                                    <input type="number" name="tahun" required class="form-control"
+                                    <input type="date" name="tahun" required class="form-control"
                                         placeholder="Tahun Dirilis">
                                 </div>
                             </div>
                             <!-- <select class="form-control" id="tahun" name="tahun">
-                                                <option value="Pilih Tahun" selected disabled>Pilih Tahun</option>
-                                                <option value="2000">2000</option>
-                                                <option value="2001">2001</option>
-                                                <option value="2002">2002</option>
-                                                <option value="2003">2003</option>
-                                                <option value="2004">2004</option>
-                                                <option value="2005">2005</option>
-                                                <option value="2006">2006</option>
-                                                <option value="2007">2007</option>
-                                                <option value="2008">2008</option>
-                                                <option value="2008">2008</option>
-                                                <option value="2009">2009</option>
-                                                <option value="2010">2010</option>
-                                                <option value="2011">2011</option>
-                                                <option value="2012">2012</option>
+                                                    <option value="Pilih Tahun" selected disabled>Pilih Tahun</option>
+                                                    <option value="2000">2000</option>
+                                                    <option value="2001">2001</option>
+                                                    <option value="2002">2002</option>
+                                                    <option value="2003">2003</option>
+                                                    <option value="2004">2004</option>
+                                                    <option value="2005">2005</option>
+                                                    <option value="2006">2006</option>
+                                                    <option value="2007">2007</option>
+                                                    <option value="2008">2008</option>
+                                                    <option value="2008">2008</option>
+                                                    <option value="2009">2009</option>
+                                                    <option value="2010">2010</option>
+                                                    <option value="2011">2011</option>
+                                                    <option value="2012">2012</option>
 
-                                            </select> -->
+                                                </select> -->
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -163,8 +168,5 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 @endsection

@@ -8,6 +8,10 @@
                 <div class="pull-left">
                     <h2>Daftar Anggota</h2>
                 </div>
+                <pre>
+                    <pre>
+                    </pre>
+                    </pre>
                 <div class="pull-right">
                     <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
                         Masukan Anggota Baru
