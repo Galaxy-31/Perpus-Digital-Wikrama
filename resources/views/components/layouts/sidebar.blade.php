@@ -105,12 +105,7 @@
                     </div>
                 </div> --}}
             </div>
-            <a href="/logout" 
-                class="btn btn-danger btn-sm w-100 mb-3">Informasi Akun</a>
-                <form action="/logout" method="POST">
-                    @csrf
-                    <button class=""><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout</button>
-                </form>
+          
             {{-- <a class="btn btn-primary btn-sm mb-0 w-100"
                 href="https://www.creative-tim.com/product/argon-dashboard-pro?ref=sidebarfree" type="button">Upgrade
                 to pro</a> --}}
