@@ -1,5 +1,6 @@
 @extends('components.master')
 @section('content')
+@role('Admin')
 <div class="row">
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
         <div class="card">
@@ -9,7 +10,7 @@
                         <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
                             <h5 class="font-weight-bolder">
-                                {{-- {{ $bukus->count() }} --}}
+                                {{ $bukus->count() }}
                             </h5>
                             <p class="mb-0">
                                 buku
@@ -33,7 +34,7 @@
                         <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
                             <h5 class="font-weight-bolder">
-                                {{-- {{ $anggotas->count() }} --}}
+                                {{ $anggotas->count() }}
                             </h5>
                             <p class="mb-0">
                                 anggota
@@ -57,7 +58,7 @@
                         <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
                             <h5 class="font-weight-bolder">
-                                {{-- {{ $peminjamans->count() }} --}}
+                                {{ $peminjamans->count() }}
                             </h5>
                             <p class="mb-0">
                                 peminjaman
@@ -81,7 +82,7 @@
                         <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
                             <h5 class="font-weight-bolder">
-                            {{-- {{ $peminjamans->count() }} --}}
+                            {{ $peminjamans->count() }}
                             </h5>
                             <p class="mb-0">
                                Pengembalian
@@ -98,6 +99,14 @@
         </div>
     </div>
 </div>
+
+@endrole
+<pre>
+    <pre>
+    </pre>
+    <pre>
+    </pre>
+</pre>
 <div class="row mt-4">
     <div class="col-lg-12 mb-lg-0 mb-4">
         <div class="card z-index-2 h-100">
