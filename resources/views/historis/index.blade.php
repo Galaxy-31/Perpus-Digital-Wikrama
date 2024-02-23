@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                    <h2>Daftar Pengembalian</h2>
+                    <h2 style="color:black" align="center">Daftar Pengembalian</h2>
                 </div>
                
                 @role("Petugas")

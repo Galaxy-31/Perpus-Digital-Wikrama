@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                    <h2>Daftar Anggota</h2>
+                    <h2 style="color:black" align="center">Daftar Anggota</h2>
                 </div>
                 <div class="pull-right">
                     <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">

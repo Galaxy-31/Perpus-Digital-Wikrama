@@ -3,11 +3,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 margin-tb">
-                <div class="pull-left">
-                    <h2>Daftar buku</h2>
+                <div class="center">
+                    <h2 style="color: black" align="center">Daftar buku</h2>
                 </div>
                 <div class="pull-right">
-                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
+                    <a href="bukus.create" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
                         Masukan Buku Baru
                     </a>
                 </div>
@@ -19,7 +19,7 @@
             </div>
         @endif
         <table class="table table-bordered">
-            <tr>
+            <tr style="color:black">
                 <th>No</th>
                 <th>ID Buku</th>
                 <th>Judul</th>
