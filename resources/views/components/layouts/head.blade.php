@@ -7,6 +7,9 @@
         Dashboard |Perpustakaan DIGITAL WIKRAMA
     </title>
 
+    {{-- Barcode --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://www.creative-tim.com/product/argon-dashboard" />
 
@@ -35,14 +38,16 @@
     <meta property="og:site_name" content="Creative Tim" />
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  {{-- font Awesome --}}
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  {{-- //font Awesome --}}
-  <script src="https://kit.fontawesome.com/54fa0558c0.js" crossorigin="anonymous"></script>
+    {{-- font Awesome --}}
+    {{-- <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css"> --}}
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    {{-- //font Awesome --}}
+    <script src="https://kit.fontawesome.com/54fa0558c0.js" crossorigin="anonymous"></script>
 
     <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -50,7 +55,6 @@
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
-
     <link id="pagestyle" href="../assets/css/argon-dashboard.min.css?v=2.0.4" rel="stylesheet" />
 
     <style>
