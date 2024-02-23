@@ -103,3 +103,6 @@
         integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA=="
         data-cf-beacon='{"rayId":"854140a5eb451936","version":"2024.2.0","token":"1b7cbb72744b40c580f8633c6b62637e"}'
         crossorigin="anonymous"></script>
+    
+    <script src="https://kit.fontawesome.com/54fa0558c0.js" crossorigin="anonymous"></script>
+
