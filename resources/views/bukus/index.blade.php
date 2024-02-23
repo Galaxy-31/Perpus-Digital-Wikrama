@@ -3,16 +3,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 margin-tb">
-                <div class="pull-left">
-
-                    <h2>Daftar buku</h2>
+                <div class="center">
+                    <h2 style="color: black" align="center">Daftar buku</h2>
                 </div>
-                <pre>
-                    <pre>
-                    </pre>
-                </pre>
-                <div class align="flex-right">
-                    <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#create">
+                <div class="pull-right">
+                    <a href="bukus.create" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
                         Masukan Buku Baru
                     </a>
                 </div>
@@ -24,7 +19,7 @@
             </div>
         @endif
         <table class="table table-bordered">
-            <tr>
+            <tr style="color:black">
                 <th>No</th>
                 <th width="60px">ID Buku</th>
                 <th>Judul</th>
@@ -49,8 +44,13 @@
                             <a class="btn btn-primary" href="{{ route('bukus.edit', $buku->id) }}"><i
                                     class="fa-solid fa-pen-to-square"></i></a>
                             <!-- <button type="button"  data-toggle="modal"
+<<<<<<< HEAD
                                                 data-target="#exampleModalCenter">
                                             </button>  -->
+=======
+                                    data-target="#exampleModalCenter">
+                                </button>  -->
+>>>>>>> 3d228dcf6c56d06c3cea8debbcb9c5ca008a47e0
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger"
@@ -67,7 +67,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -75,12 +75,17 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-lg-12 margin-tb">
-                                <div class align="center">
-                                    <h2>Tambahkan Buku</h2>
+                                <div class="pull-left">
+                                    <h2>Tambahkan buku</h2>
                                 </div>
                                 <!-- <div class="pull-right">
+<<<<<<< HEAD
                                                     <a class="btn btn-primary" href="{{ route('bukus.index') }}"> Back</a>
                                                 </div> -->
+=======
+                                        <a class="btn btn-primary" href="{{ route('bukus.index') }}"> Back</a>
+                                    </div> -->
+>>>>>>> 3d228dcf6c56d06c3cea8debbcb9c5ca008a47e0
                             </div>
                         </div>
                         @if ($errors->any())
@@ -139,6 +144,7 @@
                                 </div>
                             </div>
                             <!-- <select class="form-control" id="tahun" name="tahun">
+<<<<<<< HEAD
                                                             <option value="Pilih Tahun" selected disabled>Pilih Tahun</option>
                                                             <option value="2000">2000</option>
                                                             <option value="2001">2001</option>
@@ -156,6 +162,25 @@
                                                             <option value="2012">2012</option>
 
                                                         </select> -->
+=======
+                                                <option value="Pilih Tahun" selected disabled>Pilih Tahun</option>
+                                                <option value="2000">2000</option>
+                                                <option value="2001">2001</option>
+                                                <option value="2002">2002</option>
+                                                <option value="2003">2003</option>
+                                                <option value="2004">2004</option>
+                                                <option value="2005">2005</option>
+                                                <option value="2006">2006</option>
+                                                <option value="2007">2007</option>
+                                                <option value="2008">2008</option>
+                                                <option value="2008">2008</option>
+                                                <option value="2009">2009</option>
+                                                <option value="2010">2010</option>
+                                                <option value="2011">2011</option>
+                                                <option value="2012">2012</option>
+
+                                            </select> -->
+>>>>>>> 3d228dcf6c56d06c3cea8debbcb9c5ca008a47e0
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -167,5 +192,8 @@
                 </div>
             </div>
         </div>
+
+
+
     </div>
 @endsection

@@ -3,18 +3,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 margin-tb">
-                <pre>
-
-                    <pre &nsbp;
-                    &nsbp;>
-
-                    </pre>
-                </pre>
-
-                <div class align="center">
-                    <h2>Daftar Pengembalian</h2>
+                <div class="pull-left">
+                    <h2 style="color:black" align="center">Daftar Pengembalian</h2>
                 </div>
-
+               
                 @role("Petugas")
                 <div class="pull-right">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
@@ -29,7 +21,6 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-
         <table class="table table-bordered">
             <tr class align="center">
                 <th>No</th>
@@ -55,7 +46,7 @@
                     <td>
                         <form action="{{ route('historis.destroy', $histori->id) }}" method="POST">
                             @csrf
-                            <select  id="option" width="90px" height="30px">
+                            <select  id="option" width="90px" height="30px"> 
                             <option value="{{('')}}">Buku Di Pinjam </option>
                              <option  value="{{ route('historis.show', $histori->id) }}" id="option" class="btn btn-info"><class="btn btn-info">Buku Sudah Di Kembalikan</option>
                             <option type="submit" class="btn btn-danger" id="option"onclick="return confirm('Apakah yakin {{ $histori->nama }} sudah mengembalikan Buku?')"><i class="fa-solid fa-trash-can"></i>Buku Belum di kembalikan</option>
@@ -65,7 +56,7 @@
                             <!-- <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah yakin {{ $histori->nama }} sudah mengembalikan Buku?')"><i class="fa-solid fa-trash-can"></i></button> -->
                         </form>
                     </td>
-
+                 
                 </tr>
             @endforeach
         </table>
@@ -89,7 +80,7 @@
                                 </div>
                                 <div class="pull-right">
                                     <a class="btn btn-primary" href="{{ route('historis.index') }}"> Back</a>
-                                </div>
+                                </div> 
                             </div>
                         </div>
                         @if ($errors->any())
@@ -123,7 +114,7 @@
                                         </select>
                                     </div>
                                 </div>
-
+        
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Nama Peminjam:</strong>
@@ -143,8 +134,8 @@
                                         <input type="text" name="nama_pet" class="form-control"  placeholder="" readonly value="{{auth()->user()->name}} ">
                                     </div>
                                 </div>
-
-
+                        
+                
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Nomor Telepon:</strong>
@@ -170,7 +161,7 @@
                                         <input type="date" name="tgl_balik" class="form-control">
                                     </div>
                                 </div>
-
+                                  
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
