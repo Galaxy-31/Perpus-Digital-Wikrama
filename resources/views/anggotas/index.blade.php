@@ -48,7 +48,10 @@
                     <td>
                         <form action="{{ route('anggotas.destroy', $anggota->id) }}" method="POST">
                             <a class="btn btn-info" href="{{ route('anggotas.show', $anggota->id) }}"><i class="fa-solid fa-eye"></i></a>
-                            <a class="btn btn-primary" href="{{ route('anggotas.edit', $anggota->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-id="{{ $anggota->id }}" data-bs-target="#edit">
+                                <i class="fa-solid fa-person-rifle" stle="color: "></i>
+                            </a>
+                        </button>
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin mau menghapus {{ $anggota->nama }}?')"><i class="fa-solid fa-trash-can"></i></button>
@@ -57,6 +60,7 @@
                 </tr>
             @endforeach
         </table>
+        @include('anggotas.edit')
         {!! $anggotas->links() !!}
         <!-- Button trigger modal -->
 
