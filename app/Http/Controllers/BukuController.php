@@ -23,7 +23,7 @@ class BukuController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            
+
             ]);
 
         $cek = Buku::where('judul', $request->judul)->first();
@@ -37,7 +37,7 @@ class BukuController extends Controller
             'kategori' => $request->kategori,
             'tahun' => $request->tahun,
         ]);
-     
+
         return redirect()->route('bukus.index')->with('success', 'Buku Berhasil Di Tambahkan');
     }
     public function show(Buku $buku)
@@ -53,7 +53,7 @@ class BukuController extends Controller
     public function update(Request $request, Buku $buku)
     {
         $request->validate([
-        
+
             'judul' => 'required',
             'pengarang' => 'required',
             'penerbit' => 'required',

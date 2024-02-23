@@ -15,7 +15,7 @@ Route::get('/', function () {
 });
 
 Auth::routes([
-    'register' => true
+    'register' => false
 ]);
 
 Route::group(['middleware' => ['auth']], function ()
@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth']], function ()
         Route::resource('/bukus', BukuController::class);
         Route::resource('/users', UserController::class);
         Route::resource('/peminjamans', PeminjamanController::class);
+        Route::get('/generate-barcode', [PeminjamanController::class, 'index'])->name('generate.barcode');
         Route::resource('/anggotas', AnggotaController::class);
         Route::resource('/historis', HistoriController::class);
     });

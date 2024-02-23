@@ -3,7 +3,11 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
+<<<<<<< HEAD
+        'reference' => '7ca581db42a9c370b4022292f53c1bbc35c5a725',
+=======
         'reference' => '7d60a5518bf5d498cc4f817dd6c15eb2f03c4967',
+>>>>>>> 3d228dcf6c56d06c3cea8debbcb9c5ca008a47e0
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -394,7 +398,11 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
+<<<<<<< HEAD
+            'reference' => '7ca581db42a9c370b4022292f53c1bbc35c5a725',
+=======
             'reference' => '7d60a5518bf5d498cc4f817dd6c15eb2f03c4967',
+>>>>>>> 3d228dcf6c56d06c3cea8debbcb9c5ca008a47e0
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -496,6 +504,15 @@
             'reference' => 'ce0f4d1e8a6f4eb0ddff33f57c69c50fd09f4301',
             'type' => 'library',
             'install_path' => __DIR__ . '/../league/mime-type-detection',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'milon/barcode' => array(
+            'pretty_version' => 'v10.0.1',
+            'version' => '10.0.1.0',
+            'reference' => 'e643a713466f0109aa3ad7d29dae4900444187a5',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../milon/barcode',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
