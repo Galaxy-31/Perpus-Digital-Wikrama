@@ -48,7 +48,11 @@ class RegisterListenersPass implements CompilerPassInterface
         return $this;
     }
 
+<<<<<<< HEAD
     public function process(ContainerBuilder $container)
+=======
+    public function process(ContainerBuilder $container): void
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
     {
         if (!$container->hasDefinition('event_dispatcher') && !$container->hasAlias('event_dispatcher')) {
             return;

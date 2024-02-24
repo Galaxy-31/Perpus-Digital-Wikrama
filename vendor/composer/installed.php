@@ -3,7 +3,15 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
+<<<<<<< HEAD
         'reference' => '0a4bf20309021fddf42b886e02c47782d7db90ad',
+=======
+<<<<<<< HEAD
+        'reference' => '7ca581db42a9c370b4022292f53c1bbc35c5a725',
+=======
+        'reference' => '7d60a5518bf5d498cc4f817dd6c15eb2f03c4967',
+>>>>>>> 3d228dcf6c56d06c3cea8debbcb9c5ca008a47e0
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -439,7 +447,15 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
+<<<<<<< HEAD
             'reference' => '0a4bf20309021fddf42b886e02c47782d7db90ad',
+=======
+<<<<<<< HEAD
+            'reference' => '7ca581db42a9c370b4022292f53c1bbc35c5a725',
+=======
+            'reference' => '7d60a5518bf5d498cc4f817dd6c15eb2f03c4967',
+>>>>>>> 3d228dcf6c56d06c3cea8debbcb9c5ca008a47e0
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -544,6 +560,7 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+<<<<<<< HEAD
         'maatwebsite/excel' => array(
             'pretty_version' => '3.1.55',
             'version' => '3.1.55.0',
@@ -589,6 +606,8 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+=======
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
         'milon/barcode' => array(
             'pretty_version' => 'v10.0.1',
             'version' => '10.0.1.0',
@@ -1182,9 +1201,15 @@
             'dev_requirement' => false,
         ),
         'symfony/css-selector' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v6.0.19',
             'version' => '6.0.19.0',
             'reference' => 'f1d00bddb83a4cb2138564b2150001cb6ce272b1',
+=======
+            'pretty_version' => 'v7.0.3',
+            'version' => '7.0.3.0',
+            'reference' => 'ec60a4edf94e63b0556b6a0888548bb400a3a3be',
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/css-selector',
             'aliases' => array(),
@@ -1209,9 +1234,15 @@
             'dev_requirement' => false,
         ),
         'symfony/event-dispatcher' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v6.0.19',
             'version' => '6.0.19.0',
             'reference' => '2eaf8e63bc5b8cefabd4a800157f0d0c094f677a',
+=======
+            'pretty_version' => 'v7.0.3',
+            'version' => '7.0.3.0',
+            'reference' => '834c28d533dd0636f910909d01b9ff45cc094b5e',
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/event-dispatcher',
             'aliases' => array(),
@@ -1386,9 +1417,15 @@
             'dev_requirement' => false,
         ),
         'symfony/string' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v6.0.19',
             'version' => '6.0.19.0',
             'reference' => 'd9e72497367c23e08bf94176d2be45b00a9d232a',
+=======
+            'pretty_version' => 'v7.0.3',
+            'version' => '7.0.3.0',
+            'reference' => '524aac4a280b90a4420d8d6a040718d0586505ac',
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/string',
             'aliases' => array(),
@@ -1437,9 +1474,15 @@
             'dev_requirement' => false,
         ),
         'symfony/yaml' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v6.0.19',
             'version' => '6.0.19.0',
             'reference' => 'deec3a812a0305a50db8ae689b183f43d915c884',
+=======
+            'pretty_version' => 'v7.0.3',
+            'version' => '7.0.3.0',
+            'reference' => '2d4fca631c00700597e9442a0b2451ce234513d3',
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/yaml',
             'aliases' => array(),

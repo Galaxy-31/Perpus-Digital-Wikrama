@@ -16,14 +16,22 @@
         }
     ],
     "require": {
+<<<<<<< HEAD
         "php": ">=8.0.2",
         "symfony/polyfill-ctype": "^1.8"
     },
     "require-dev": {
         "symfony/console": "^5.4|^6.0"
+=======
+        "php": ">=8.2",
+        "symfony/polyfill-ctype": "^1.8"
+    },
+    "require-dev": {
+        "symfony/console": "^6.4|^7.0"
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
     },
     "conflict": {
-        "symfony/console": "<5.4"
+        "symfony/console": "<6.4"
     },
     "suggest": {
         "symfony/console": "For validating YAML files using the lint command"

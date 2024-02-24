@@ -50,10 +50,14 @@ class LintCommand extends Command
         $this->isReadableProvider = null === $isReadableProvider || $isReadableProvider instanceof \Closure ? $isReadableProvider : \Closure::fromCallable($isReadableProvider);
     }
 
+<<<<<<< HEAD
     /**
      * {@inheritdoc}
      */
     protected function configure()
+=======
+    protected function configure(): void
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
     {
         $this
             ->addArgument('filename', InputArgument::IS_ARRAY, 'A file, a directory or "-" for reading from STDIN')

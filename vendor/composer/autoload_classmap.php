@@ -3017,6 +3017,7 @@ return array(
     'League\\MimeTypeDetection\\GeneratedExtensionToMimeTypeMap' => $vendorDir . '/league/mime-type-detection/src/GeneratedExtensionToMimeTypeMap.php',
     'League\\MimeTypeDetection\\MimeTypeDetector' => $vendorDir . '/league/mime-type-detection/src/MimeTypeDetector.php',
     'League\\MimeTypeDetection\\OverridingExtensionToMimeTypeMap' => $vendorDir . '/league/mime-type-detection/src/OverridingExtensionToMimeTypeMap.php',
+<<<<<<< HEAD
     'Maatwebsite\\Excel\\Cache\\BatchCache' => $vendorDir . '/maatwebsite/excel/src/Cache/BatchCache.php',
     'Maatwebsite\\Excel\\Cache\\BatchCacheDeprecated' => $vendorDir . '/maatwebsite/excel/src/Cache/BatchCacheDeprecated.php',
     'Maatwebsite\\Excel\\Cache\\CacheManager' => $vendorDir . '/maatwebsite/excel/src/Cache/CacheManager.php',
@@ -3209,6 +3210,8 @@ return array(
     'Matrix\\Operators\\Multiplication' => $vendorDir . '/markbaker/matrix/classes/src/Operators/Multiplication.php',
     'Matrix\\Operators\\Operator' => $vendorDir . '/markbaker/matrix/classes/src/Operators/Operator.php',
     'Matrix\\Operators\\Subtraction' => $vendorDir . '/markbaker/matrix/classes/src/Operators/Subtraction.php',
+=======
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
     'Milon\\Barcode\\BarcodeServiceProvider' => $vendorDir . '/milon/barcode/src/Milon/Barcode/BarcodeServiceProvider.php',
     'Milon\\Barcode\\DNS1D' => $vendorDir . '/milon/barcode/src/Milon/Barcode/DNS1D.php',
     'Milon\\Barcode\\DNS2D' => $vendorDir . '/milon/barcode/src/Milon/Barcode/DNS2D.php',
@@ -5085,6 +5088,7 @@ return array(
     'RealRashid\\SweetAlert\\SweetAlertServiceProvider' => $vendorDir . '/realrashid/sweet-alert/src/SweetAlertServiceProvider.php',
     'RealRashid\\SweetAlert\\ToSweetAlert' => $vendorDir . '/realrashid/sweet-alert/src/ToSweetAlert.php',
     'RealRashid\\SweetAlert\\Toaster' => $vendorDir . '/realrashid/sweet-alert/src/Toaster.php',
+<<<<<<< HEAD
     'ReturnTypeWillChange' => $vendorDir . '/symfony/polyfill-php81/Resources/stubs/ReturnTypeWillChange.php',
     'Sabberworm\\CSS\\CSSList\\AtRuleBlockList' => $vendorDir . '/sabberworm/php-css-parser/src/CSSList/AtRuleBlockList.php',
     'Sabberworm\\CSS\\CSSList\\CSSBlockList' => $vendorDir . '/sabberworm/php-css-parser/src/CSSList/CSSBlockList.php',
@@ -5126,6 +5130,9 @@ return array(
     'Sabberworm\\CSS\\Value\\URL' => $vendorDir . '/sabberworm/php-css-parser/src/Value/URL.php',
     'Sabberworm\\CSS\\Value\\Value' => $vendorDir . '/sabberworm/php-css-parser/src/Value/Value.php',
     'Sabberworm\\CSS\\Value\\ValueList' => $vendorDir . '/sabberworm/php-css-parser/src/Value/ValueList.php',
+=======
+    'SQLite3Exception' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/SQLite3Exception.php',
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
     'SebastianBergmann\\CliParser\\AmbiguousOptionException' => $vendorDir . '/sebastian/cli-parser/src/exceptions/AmbiguousOptionException.php',
     'SebastianBergmann\\CliParser\\Exception' => $vendorDir . '/sebastian/cli-parser/src/exceptions/Exception.php',
     'SebastianBergmann\\CliParser\\OptionDoesNotAllowArgumentException' => $vendorDir . '/sebastian/cli-parser/src/exceptions/OptionDoesNotAllowArgumentException.php',
@@ -6176,6 +6183,7 @@ return array(
     'Symfony\\Component\\String\\Inflector\\FrenchInflector' => $vendorDir . '/symfony/string/Inflector/FrenchInflector.php',
     'Symfony\\Component\\String\\Inflector\\InflectorInterface' => $vendorDir . '/symfony/string/Inflector/InflectorInterface.php',
     'Symfony\\Component\\String\\LazyString' => $vendorDir . '/symfony/string/LazyString.php',
+    'Symfony\\Component\\String\\Resources\\WcswidthDataGenerator' => $vendorDir . '/symfony/string/Resources/WcswidthDataGenerator.php',
     'Symfony\\Component\\String\\Slugger\\AsciiSlugger' => $vendorDir . '/symfony/string/Slugger/AsciiSlugger.php',
     'Symfony\\Component\\String\\Slugger\\SluggerInterface' => $vendorDir . '/symfony/string/Slugger/SluggerInterface.php',
     'Symfony\\Component\\String\\UnicodeString' => $vendorDir . '/symfony/string/UnicodeString.php',

@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth']], function ()
         Route::get('bukus/export-pdf/', [BukuController::class, 'exportPDF'])->name('bukuss.export-pdf');
         Route::resource('/users', UserController::class);
         Route::resource('/peminjamans', PeminjamanController::class);
+        Route::get('/generate-barcode', [PeminjamanController::class, 'index'])->name('generate.barcode');
         Route::resource('/anggotas', AnggotaController::class);
         Route::resource('/historis', HistoriController::class);
     });

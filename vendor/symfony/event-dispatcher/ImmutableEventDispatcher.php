@@ -33,34 +33,50 @@ class ImmutableEventDispatcher implements EventDispatcherInterface
         return $this->dispatcher->dispatch($event, $eventName);
     }
 
+<<<<<<< HEAD
     /**
      * {@inheritdoc}
      */
     public function addListener(string $eventName, callable|array $listener, int $priority = 0)
+=======
+    public function addListener(string $eventName, callable|array $listener, int $priority = 0): never
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
     {
         throw new \BadMethodCallException('Unmodifiable event dispatchers must not be modified.');
     }
 
+<<<<<<< HEAD
     /**
      * {@inheritdoc}
      */
     public function addSubscriber(EventSubscriberInterface $subscriber)
+=======
+    public function addSubscriber(EventSubscriberInterface $subscriber): never
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
     {
         throw new \BadMethodCallException('Unmodifiable event dispatchers must not be modified.');
     }
 
+<<<<<<< HEAD
     /**
      * {@inheritdoc}
      */
     public function removeListener(string $eventName, callable|array $listener)
+=======
+    public function removeListener(string $eventName, callable|array $listener): never
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
     {
         throw new \BadMethodCallException('Unmodifiable event dispatchers must not be modified.');
     }
 
+<<<<<<< HEAD
     /**
      * {@inheritdoc}
      */
     public function removeSubscriber(EventSubscriberInterface $subscriber)
+=======
+    public function removeSubscriber(EventSubscriberInterface $subscriber): never
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
     {
         throw new \BadMethodCallException('Unmodifiable event dispatchers must not be modified.');
     }

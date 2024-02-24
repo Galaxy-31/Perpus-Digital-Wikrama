@@ -338,7 +338,11 @@ class UnicodeString extends AbstractUnicodeString
         return $prefix === grapheme_extract($this->string, \strlen($prefix), \GRAPHEME_EXTR_MAXBYTES);
     }
 
+<<<<<<< HEAD
     public function __wakeup()
+=======
+    public function __wakeup(): void
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
     {
         if (!\is_string($this->string)) {
             throw new \BadMethodCallException('Cannot unserialize '.__CLASS__);

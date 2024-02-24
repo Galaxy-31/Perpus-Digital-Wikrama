@@ -7,5 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Milon\\Barcode' => array($vendorDir . '/milon/barcode/src'),
+<<<<<<< HEAD
     'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
+=======
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
 );

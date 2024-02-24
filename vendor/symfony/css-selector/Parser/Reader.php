@@ -53,7 +53,11 @@ class Reader
         return substr($this->source, $this->position + $offset, $length);
     }
 
+<<<<<<< HEAD
     public function getOffset(string $string)
+=======
+    public function getOffset(string $string): int|false
+>>>>>>> dcd6069c6ffa107d38fba1786959d5d07a8e53b3
     {
         $position = strpos($this->source, $string, $this->position);
 
