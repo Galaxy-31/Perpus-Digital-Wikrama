@@ -26,7 +26,7 @@
         <table class="table table-bordered">
             <tr class align="center">
                 <th>No</th>
-                <th width="80px">NIS</th>
+                <th width="60px">NIS</th>
                 <th width="120px">Nama</th>
                 <th>Jenis Kelamin</th>
                 <th width="200px">Nomor Telepon</th>
@@ -36,7 +36,7 @@
             @foreach ($anggotas as $anggota)
                 <tr>
                     <td>{{ ++$i }}</td>
-                    <td>{{ $anggota->IUD }}</td>
+                    <td>{{ $anggota->IUD }} <div class="mb-3">{!! DNS1D::getBarcodeHTML('4445645656', 'CODABAR') !!}</div></td>
                     <td>{{ $anggota->nama }}</td>
                     <td>{{ $anggota->jk }}</td>
                     <td>{{ $anggota->no_hp }}</td>
@@ -95,7 +95,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>NIS Anggota:</strong>
-                                        <input min="0"type="number" name="IUD" class="form-control" required placeholder="Nis Anggota">
+                                        <input min="0"type="number" name="IUD" class="form-control" required placeholder="NIS Anggota">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">

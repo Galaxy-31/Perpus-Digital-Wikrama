@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Buku;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-
+use App\Exports\BukusExport;
+use Maatwebsite\Excel\Facades\Excel;
 class BukuController extends Controller
 {
     public function index()
@@ -14,6 +15,18 @@ class BukuController extends Controller
 
         return view('bukus.index', compact('bukus'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
+
+
+    public function exportExcel() 
+    {
+        return Excel::download(new BukusExport, 'Laporan Buku.xlsx');
+    }
+
+    public function exportPDF() 
+    {
+        return Excel::download(new BukusExport, 'Laporan Buku.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
+    }
+
 
     public function create()
     {

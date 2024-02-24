@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view ('welcome');
 });
 
 Auth::routes([
@@ -24,6 +24,8 @@ Route::group(['middleware' => ['auth']], function ()
     Route::group(['middleware' => ['role:Admin']], function ()
     {
         Route::resource('/bukus', BukuController::class);
+        Route::get('bukus/export-excel/', [BukuController::class, 'exportExcel'])->name('bukus.export-excel');
+        Route::get('bukus/export-pdf/', [BukuController::class, 'exportPDF'])->name('bukuss.export-pdf');
         Route::resource('/users', UserController::class);
         Route::resource('/peminjamans', PeminjamanController::class);
         Route::resource('/anggotas', AnggotaController::class);

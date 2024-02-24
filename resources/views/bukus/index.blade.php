@@ -6,6 +6,17 @@
                 <div class="pull-left">
                     <h2>Daftar buku</h2>
                 </div>
+                 <div class="dropdown w-auto">
+                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Export
+                        </a>
+
+                        <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('bukus.export-excel') }}">Excel</a></li>
+                            <li><a class="dropdown-item" href="{{ route('bukuss.export-pdf') }}">PDF</a></li>
+                        </ul>
+                    </div>
                 <div class="pull-right">
                     <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
                         Masukan Buku Baru
@@ -32,7 +43,7 @@
             @foreach ($bukus as $buku)
                 <tr>
                     <td>{{ ++$i }}</td>
-                    <td>{{ $buku->IUD }}</td>
+                    <td>{{ $buku->IUD }}  <div class="mb-3">{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</div></td>
                     <td>{{ $buku->judul }}</td>
                     <td>{{ $buku->pengarang }}</td>
                     <td>{{ $buku->penerbit }}</td>
@@ -63,7 +74,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle"> Modal title</h5>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
