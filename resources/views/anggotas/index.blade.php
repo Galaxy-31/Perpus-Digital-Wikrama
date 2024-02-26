@@ -6,13 +6,9 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                    <h2>Daftar Anggota</h2>
+                    <h2 style="color:black" align="center">Daftar Anggota</h2>
                 </div>
-                <pre>
-                    <pre>
-                    </pre>
-                    </pre>
-                <div class="pull-right">
+                <div class="right">
                     <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
                         Masukan Anggota Baru
                     </a>
@@ -40,14 +36,14 @@
             @foreach ($anggotas as $anggota)
                 <tr>
                     <td>{{ ++$i }}</td>
-                    <td>{{ $anggota->IUD }}</td>
+                    <td>{{ $anggota->IUD }} <div class="mb-3">{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</div></td>
                     <td>{{ $anggota->nama }}</td>
                     <td>{{ $anggota->jk }}</td>
                     <td>{{ $anggota->no_hp }}</td>
                     <td>{{ $anggota->alamat }}</td>
                     <td>
-                        <form action="{{ route('anggotas.destroy', $anggota->id) }}" method="POST">
-                            <a class="btn btn-info" href="{{ route('anggotas.show', $anggota->id) }}"><i class="fa-solid fa-eye"></i></a>
+                        <form action="{{ route('anggotas.destroy', $anggota->id) }}" method="POST" class align="center">
+                            {{-- <a class="btn btn-info" href="{{ route('anggotas.show', $anggota->id) }}"><i class="fa-solid fa-eye"></i></a> --}}
                             <a class="btn btn-primary" href="{{ route('anggotas.edit', $anggota->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                             @csrf
                             @method('DELETE')
@@ -99,7 +95,9 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>NIS Anggota:</strong>
+
                                         <input min="0"type="number" name="IUD" class="form-control" required placeholder="Nis Anggota">
+                                    </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">

@@ -13,16 +13,16 @@ return [
 
     'roles_structure' => [
         'Admin' => [
-            'name' => 'c,r,u,d',
-            'name' => 'c,r,u,d',
-            'name' => 'c,r,u,d',
-            'name' => 'c,r,u,d',
+            'bukus' => 'c,r,u,d',
+            'anggotas' => 'c,r,u,d',
+            'peminjamans' => 'c,r,u,d',
+            'historis' => 'c,r,u,d',
         ],
         'Petugas' => [
-            'name' => 'c,r,u,d',
-            'name' => 'c,r,u,d',
-            'name' => 'c,r,u,d',
-            'name' => 'c,r,u,d',
+            'bukus' => 'c,r,u,d',
+            'anggotas' => 'c,r,u,d',
+            'peminjamans' => 'c,r,u,d',
+            'historis' => 'c,r,u,d',
         ],
     ],
 
