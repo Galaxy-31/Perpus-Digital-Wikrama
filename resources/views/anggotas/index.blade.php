@@ -8,17 +8,8 @@
                 <div class="pull-left">
                     <h2 style="color:black" align="center">Daftar Anggota</h2>
                 </div>
-<<<<<<< HEAD
-                <pre>
-                    <pre>
-                    </pre>
-                    </pre>
-                <div class align="right">
-                    <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#create">
-=======
-                <div class="pull-right">
+                <div class="right">
                     <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
->>>>>>> 3d228dcf6c56d06c3cea8debbcb9c5ca008a47e0
                         Masukan Anggota Baru
                     </a>
                 </div>
@@ -45,7 +36,7 @@
             @foreach ($anggotas as $anggota)
                 <tr>
                     <td>{{ ++$i }}</td>
-                    <td>{{ $anggota->IUD }}<div class="mb-3">{!! DNS1D::getBarcodeHTML( 'CODABAR') !!}</div></td>
+                    <td>{{ $anggota->IUD }} <div class="mb-3">{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</div></td>
                     <td>{{ $anggota->nama }}</td>
                     <td>{{ $anggota->jk }}</td>
                     <td>{{ $anggota->no_hp }}</td>
