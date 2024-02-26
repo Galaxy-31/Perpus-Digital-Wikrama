@@ -2,14 +2,13 @@
 <html lang="en">
 
 
-    {{-- Head --}}
-    @include('components.layouts.head')
-    {{-- //Head --}}
+{{-- Head --}}
+@include('components.layouts.head')
+{{-- //Head --}}
 
-    <body class="g-sidenav-show   bg-gray-100">
+<body class="g-sidenav-show   bg-gray-100">
 
-
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="min-height-100 bg-primary position-absolute w-100"></div>
@@ -27,34 +26,34 @@
 
 
         <div class="container-fluid py-4">
-        <section class="content">
+            <section class="content">
                 @yield('content')
             </section>
-        <div class="row mt-4">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 margin-tb">
-                        <div class="pull-left">
-                            <h2>Location List</h2>
+            <div class="row mt-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 margin-tb">
+                            <div class="pull-left">
+                                <h2>Daftar Kategori</h2>
+                            </div>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#exampleModalCenter">
+                                <i class="fa-solid fa-plus" style="color: #b8d2ff;"></i>
+                            </button>
                         </div>
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModalCenter">
-                            <i class="fa-solid fa-plus" style="color: #b8d2ff;"></i>
-                        </button>
                     </div>
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
+                    {{ $dataTable->table() }}
                 </div>
-                @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        <p>{{ $message }}</p>
-                    </div>
-                @endif
-                {{ $dataTable->table() }}
-            </div>
             </div>
             <div class="row mt-4">
-             
+
             </div>
-           
+
         </div>
     </main>
     <div class="fixed-plugin">
@@ -132,14 +131,14 @@
             </div>
         </div>
     </div>
-<footer>
-    @push('scripts')
-    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-@endpush
-</footer>
+    <footer>
+        @push('scripts')
+            {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+        @endpush
+    </footer>
 
     {{-- Script --}}
-        @include('components.layouts.script')
+    @include('components.layouts.script')
     {{-- //Script --}}
     @stack('scripts')
 </body>

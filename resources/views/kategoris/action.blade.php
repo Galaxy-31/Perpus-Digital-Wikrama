@@ -4,7 +4,6 @@
         Action
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuAction">
-        <li><a class="dropdown-item" href="{{ route('kategoris.detail', $kategori->id) }}">Show</a></li>
         <li><a class="dropdown-item edit-btn" href="#" data-id="{{ $kategori->id }}">Edit</a></li>
         <li>
             <hr class="dropdown-divider">
