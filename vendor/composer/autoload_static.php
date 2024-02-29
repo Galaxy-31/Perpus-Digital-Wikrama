@@ -182,12 +182,9 @@ class ComposerStaticInita7da5ffe78d3936e51027225343a8436
         'C' => 
         array (
             'Cron\\' => 5,
-<<<<<<< HEAD
-=======
             'Composer\\Semver\\' => 16,
             'Complex\\' => 8,
             'Collective\\Html\\' => 16,
->>>>>>> 46568996e816e07d7ba2a97396fe15eae5d4cfec
             'Carbon\\Doctrine\\' => 16,
             'Collective\\Html\\' => 16,
             'Carbon\\' => 7,
@@ -576,8 +573,6 @@ class ComposerStaticInita7da5ffe78d3936e51027225343a8436
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
         ),
-<<<<<<< HEAD
-=======
         'Composer\\Semver\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/semver/src',
@@ -594,7 +589,6 @@ class ComposerStaticInita7da5ffe78d3936e51027225343a8436
         array (
             0 => __DIR__ . '/..' . '/carbonphp/carbon-doctrine-types/src/Carbon/Doctrine',
         ),
->>>>>>> 46568996e816e07d7ba2a97396fe15eae5d4cfec
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
@@ -637,14 +631,11 @@ class ComposerStaticInita7da5ffe78d3936e51027225343a8436
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
-<<<<<<< HEAD
-=======
         'App\\Http\\Requests\\BukuRequest' => __DIR__ . '/../..' . '/app/Http/Requests/BukuRequest.php',
         'App\\Models\\Anggota' => __DIR__ . '/../..' . '/app/Models/Anggota.php',
         'App\\Models\\Buku' => __DIR__ . '/../..' . '/app/Models/Buku.php',
         'App\\Models\\Histori' => __DIR__ . '/../..' . '/app/Models/Histori.php',
         'App\\Models\\Peminjaman' => __DIR__ . '/../..' . '/app/Models/Peminjaman.php',
->>>>>>> 46568996e816e07d7ba2a97396fe15eae5d4cfec
         'App\\Models\\Permission' => __DIR__ . '/../..' . '/app/Models/Permission.php',
         'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
@@ -759,13 +750,10 @@ class ComposerStaticInita7da5ffe78d3936e51027225343a8436
         'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',
         'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
         'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
-<<<<<<< HEAD
-=======
         'Complex\\Complex' => __DIR__ . '/..' . '/markbaker/complex/classes/src/Complex.php',
         'Complex\\Exception' => __DIR__ . '/..' . '/markbaker/complex/classes/src/Exception.php',
         'Complex\\Functions' => __DIR__ . '/..' . '/markbaker/complex/classes/src/Functions.php',
         'Complex\\Operations' => __DIR__ . '/..' . '/markbaker/complex/classes/src/Operations.php',
->>>>>>> 46568996e816e07d7ba2a97396fe15eae5d4cfec
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
@@ -6127,10 +6115,6 @@ class ComposerStaticInita7da5ffe78d3936e51027225343a8436
         'Whoops\\Util\\Misc' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/Misc.php',
         'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
-<<<<<<< HEAD
-        'Yajra\\DataTables\\ApiResourceDataTable' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/ApiResourceDataTable.php',
-=======
->>>>>>> 46568996e816e07d7ba2a97396fe15eae5d4cfec
         'Yajra\\DataTables\\ButtonsServiceProvider' => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src/ButtonsServiceProvider.php',
         'Yajra\\DataTables\\CollectionDataTable' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/CollectionDataTable.php',
         'Yajra\\DataTables\\Commands\\TransformerMakeCommand' => __DIR__ . '/..' . '/yajra/laravel-datatables-fractal/src/Commands/TransformerMakeCommand.php',
@@ -6223,8 +6207,6 @@ class ComposerStaticInita7da5ffe78d3936e51027225343a8436
         'Yajra\\DataTables\\Utilities\\Config' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Utilities/Config.php',
         'Yajra\\DataTables\\Utilities\\Helper' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Utilities/Helper.php',
         'Yajra\\DataTables\\Utilities\\Request' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Utilities/Request.php',
-<<<<<<< HEAD
-=======
         'ZipStream\\CentralDirectoryFileHeader' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/CentralDirectoryFileHeader.php',
         'ZipStream\\CompressionMethod' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/CompressionMethod.php',
         'ZipStream\\DataDescriptor' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/DataDescriptor.php',
@@ -6252,7 +6234,6 @@ class ComposerStaticInita7da5ffe78d3936e51027225343a8436
         'ZipStream\\Zip64\\ExtendedInformationExtraField' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Zip64/ExtendedInformationExtraField.php',
         'ZipStream\\ZipStream' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/ZipStream.php',
         'ZipStream\\Zs\\ExtendedInformationExtraField' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Zs/ExtendedInformationExtraField.php',
->>>>>>> 46568996e816e07d7ba2a97396fe15eae5d4cfec
         'voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',
     );
 

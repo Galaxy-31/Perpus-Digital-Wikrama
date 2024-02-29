@@ -34,7 +34,7 @@
                         <div class="numbers">
                             <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
                             <h5 class="font-weight-bolder">
-                                {{ $anggotas->count() }}
+                                {{ $users->count() }}
                             </h5>
                             <p class="mb-0">
                                 anggota

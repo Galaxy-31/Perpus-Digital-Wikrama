@@ -29,8 +29,6 @@ Route::group(['middleware' => ['auth']], function ()
         Route::resource('/peminjamans', PeminjamanController::class);
         Route::resource('/anggotas', AnggotaController::class);
         Route::resource('/historis', HistoriController::class);
-        Route::get('/kategori', [App\Http\Controllers\KategoriController::class, 'index'])->name('kategori');
-        Route::resource('kategori', KategoriController::class);
        // nama nama crud
     });
     Route::group(['middleware' => ['role:Petugas|Admin']], function ()
