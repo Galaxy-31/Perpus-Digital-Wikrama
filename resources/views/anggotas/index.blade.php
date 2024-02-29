@@ -40,7 +40,8 @@
             @foreach ($anggotas as $anggota)
                 <tr>
                     <td>{{ ++$i }}</td>
-                    <td>{{ $anggota->IUD }}</td>
+                    {{-- <td>{{ $anggota->IUD }} <div class="mb-3">{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</div></td> --}}
+                    <td class align="center">{!! DNS1D::getBarcodeHTML('000000000', 'PHARMA2T') !!}</td>
                     <td>{{ $anggota->nama }}</td>
                     <td>{{ $anggota->jk }}</td>
                     <td>{{ $anggota->no_hp }}</td>

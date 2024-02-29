@@ -33,7 +33,7 @@
         <table class="table table-bordered">
             <tr class align="center">
                 <th>No</th>
-                <th width="20px">Kode</th>
+                <th width="20px">Kode Peminjam</th>
                 <th>Judul</th>
                 <th>Nama Peminjam</th>
                 <th>Nama Petugas</th>
@@ -45,7 +45,7 @@
             @foreach ($historis as $histori)
                 <tr>
                     <td>{{ ++$i }}</td>
-                    <td>{{ $histori->id }}</td>
+                    <td>{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</td>
                     <td>{{ $histori->judul }}</td>
                     <td>{{ $histori->nama }}</td>
                     <td>{{ $histori->nama_pet }}</td>

@@ -16,12 +16,32 @@
                         Masukan Buku Baru
                     </a>
                 </div>
+                <div class align="right">
+                    <div class="form" method="get" action="{{ route('search') }}">
+                        <div class="form-group w-100 mb-3">
+                            {{-- <label for="search" class="d-block mr-2">Pencarian</label> --}}
+                            <input type="text" name="search" class="form-control w-15 d-inline" id="judul" placeholder="Cari Disini">
+                            <button type="submit" class="btn btn-primary mb-1">Cari</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown w-auto" class align="right">
+                    <a class="btn btn-success dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Export
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('bukus.export-excel') }}">Excel</a></li>
+                        <li><a class="dropdown-item" href="{{ route('bukus.export-pdf') }}">PDF</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
         @endif
         <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
         <table class="table table-bordered,sortable">
@@ -40,8 +60,8 @@
             @foreach ($bukus as $buku)
                 <tr>
                     <td>{{ ++$i }}</td>
-                    <td>{{ $buku->IUD }}<div class="mb-3">{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</div>
-                    </td>
+                    {{-- <td>{{ $buku->IUD }}<div class="mb-3">{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</div></td> --}}
+                    <td>{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</td>
                     <td>{{ $buku->judul }}</td>
                     <td>{{ $buku->pengarang }}</td>
                     <td>{{ $buku->penerbit }}</td>
@@ -172,4 +192,6 @@
             </div>
         </div>
     </div>
+
+
 @endsection
