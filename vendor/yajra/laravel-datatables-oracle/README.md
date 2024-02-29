@@ -1,13 +1,13 @@
-# jQuery DataTables API for Laravel 4|5|6|7|8|9|10
+# jQuery DataTables API for Laravel 4|5|6|7|8|9
 
 [![Join the chat at https://gitter.im/yajra/laravel-datatables](https://badges.gitter.im/yajra/laravel-datatables.svg)](https://gitter.im/yajra/laravel-datatables?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://www.paypal.me/yajra)
 [![Donate](https://img.shields.io/badge/donate-patreon-blue.svg)](https://www.patreon.com/bePatron?u=4521203)
 
-[![Laravel 4.2|5.x|6|7|8|9|10](https://img.shields.io/badge/Laravel-4.2|5.x|6|7|8|9|10-orange.svg)](http://laravel.com)
+[![Laravel 4.2|5.x|6|7|8|9](https://img.shields.io/badge/Laravel-4.2|5.x|6|7|8|9-orange.svg)](http://laravel.com)
 [![Latest Stable Version](https://img.shields.io/packagist/v/yajra/laravel-datatables-oracle.svg)](https://packagist.org/packages/yajra/laravel-datatables-oracle)
-[![Continuous Integration](https://github.com/yajra/laravel-datatables/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/yajra/laravel-datatables/actions/workflows/continuous-integration.yml)
-[![Static Analysis](https://github.com/yajra/laravel-datatables/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/yajra/laravel-datatables/actions/workflows/static-analysis.yml)
+[![Latest Unstable Version](https://poser.pugx.org/yajra/laravel-datatables-oracle/v/unstable.svg)](https://packagist.org/packages/yajra/laravel-datatables-oracle)
+![Build Status](https://github.com/yajra/laravel-datatables-html/workflows/tests/badge.svg)
 [![Total Downloads](https://poser.pugx.org/yajra/laravel-datatables-oracle/downloads.png)](https://packagist.org/packages/yajra/laravel-datatables-oracle)
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://packagist.org/packages/yajra/laravel-datatables-oracle)
 
@@ -23,6 +23,7 @@ return datatables(DB::table('users'))->toJson();
 return datatables(User::all())->toJson();
 ```
 
+<<<<<<< HEAD
 ## Sponsors
 
 <a href="https://editor.datatables.net?utm_source=laravel-datatables&utm_medium=github_readme&utm_campaign=logo">
@@ -39,6 +40,8 @@ return datatables(User::all())->toJson();
 
 
 
+=======
+>>>>>>> 46568996e816e07d7ba2a97396fe15eae5d4cfec
 ## Requirements
 - [PHP >= 8.0.2](http://php.net/)
 - [Laravel Framework](https://github.com/laravel/framework)
@@ -69,12 +72,19 @@ return datatables(User::all())->toJson();
 | 7.x.x   | 9.x      |
 | 8.x.x   | 9.x      |
 | 9.x.x   | 10.x     |
+<<<<<<< HEAD
 | 10.x.x  | 10.x     |
+=======
+>>>>>>> 46568996e816e07d7ba2a97396fe15eae5d4cfec
 
 ## Quick Installation
 
 ```bash
+<<<<<<< HEAD
 composer require yajra/laravel-datatables-oracle:"^10.0"
+=======
+$ composer require yajra/laravel-datatables-oracle:"^10.0"
+>>>>>>> 46568996e816e07d7ba2a97396fe15eae5d4cfec
 ```
 
 #### Service Provider & Facade (Optional on Laravel 5.5+)
@@ -95,7 +105,11 @@ Register provider and facade on your `config/app.php` file.
 #### Configuration (Optional)
 
 ```bash
+<<<<<<< HEAD
 php artisan vendor:publish --provider="Yajra\DataTables\DataTablesServiceProvider"
+=======
+$ php artisan vendor:publish --provider="Yajra\DataTables\DataTablesServiceProvider"
+>>>>>>> 46568996e816e07d7ba2a97396fe15eae5d4cfec
 ```
 
 And that's it! Start building out some awesome DataTables!

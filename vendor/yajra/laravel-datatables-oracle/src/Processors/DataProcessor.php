@@ -9,79 +9,20 @@ use Yajra\DataTables\Utilities\Helper;
 
 class DataProcessor
 {
-    /**
-     * @var int
-     */
     protected int $start;
-    /**
-     * @var array
-     */
     protected array $output = [];
-
-    /**
-     * @var array<array-key, array{name: string, content: mixed}>
-     */
     protected array $appendColumns = [];
-
-    /**
-     * @var array<array-key, array{name: string, content: mixed}>
-     */
     protected array $editColumns = [];
-
-    /**
-     * @var array
-     */
     protected array $templates = [];
-
-    /**
-     * @var array
-     */
     protected array $rawColumns = [];
-
-    /**
-     * @var array|string[]
-     */
     protected array $exceptions = ['DT_RowId', 'DT_RowClass', 'DT_RowData', 'DT_RowAttr'];
-
-    /**
-     * @var array
-     */
     protected array $onlyColumns = [];
-
-    /**
-     * @var array
-     */
     protected array $makeHidden = [];
-
-    /**
-     * @var array
-     */
     protected array $makeVisible = [];
-
-    /**
-     * @var array
-     */
     protected array $excessColumns = [];
-
-    /**
-     * @var string|array
-     */
     protected mixed $escapeColumns = [];
-
-    /**
-     * @var iterable
-     */
     protected iterable $results;
-
-    /**
-     * @var bool
-     */
     protected bool $includeIndex = false;
-
-    /**
-     * @var bool
-     */
-    protected bool $ignoreGetters = false;
 
     /**
      * @param  iterable  $results
@@ -97,11 +38,10 @@ class DataProcessor
         $this->excessColumns = $columnDef['excess'] ?? [];
         $this->onlyColumns = $columnDef['only'] ?? [];
         $this->escapeColumns = $columnDef['escape'] ?? [];
-        $this->includeIndex = $columnDef['index'] ?? false;
+        $this->includeIndex = $columnDef['index'] ?? [];
         $this->rawColumns = $columnDef['raw'] ?? [];
         $this->makeHidden = $columnDef['hidden'] ?? [];
         $this->makeVisible = $columnDef['visible'] ?? [];
-        $this->ignoreGetters = $columnDef['ignore_getters'] ?? false;
         $this->templates = $templates;
         $this->start = $start;
     }
@@ -111,6 +51,8 @@ class DataProcessor
      *
      * @param  bool  $object
      * @return array
+     *
+     * @throws \Exception
      */
     public function process($object = false): array
     {
@@ -118,7 +60,7 @@ class DataProcessor
         $indexColumn = config('datatables.index_column', 'DT_RowIndex');
 
         foreach ($this->results as $row) {
-            $data = Helper::convertToArray($row, ['hidden' => $this->makeHidden, 'visible' => $this->makeVisible, 'ignore_getters' => $this->ignoreGetters]);
+            $data = Helper::convertToArray($row, ['hidden' => $this->makeHidden, 'visible' => $this->makeVisible]);
             $value = $this->addColumns($data, $row);
             $value = $this->editColumns($value, $row);
             $value = $this->setupRowVariables($value, $row);
@@ -139,8 +81,10 @@ class DataProcessor
      * Process add columns.
      *
      * @param  array  $data
-     * @param  array|object|\Illuminate\Database\Eloquent\Model  $row
+     * @param  array|object  $row
      * @return array
+     *
+     * @throws \Exception
      */
     protected function addColumns(array $data, $row): array
     {
@@ -149,10 +93,8 @@ class DataProcessor
             if ($content instanceof Formatter) {
                 $column = str_replace('_formatted', '', $value['name']);
 
+                /** @phpstan-ignore-next-line  */
                 $value['content'] = $content->format($data[$column], $row);
-                if (isset($data[$column])) {
-                    $value['content'] = $content->format($data[$column], $row);
-                }
             } else {
                 $value['content'] = Helper::compileContent($content, $data, $row);
             }
@@ -169,6 +111,8 @@ class DataProcessor
      * @param  array  $data
      * @param  array|object  $row
      * @return array
+     *
+     * @throws \Exception
      */
     protected function editColumns(array $data, object|array $row): array
     {
@@ -186,6 +130,8 @@ class DataProcessor
      * @param  array  $data
      * @param  array|object  $row
      * @return array
+     *
+     * @throws \Exception
      */
     protected function setupRowVariables(array $data, object|array $row): array
     {

@@ -10,12 +10,13 @@ use Illuminate\Support\Traits\Macroable;
 use Psr\Log\LoggerInterface;
 use Yajra\DataTables\Contracts\DataTable;
 use Yajra\DataTables\Contracts\Formatter;
+use Yajra\DataTables\Exceptions\Exception;
 use Yajra\DataTables\Processors\DataProcessor;
 use Yajra\DataTables\Utilities\Helper;
 
 /**
- * @method static setTransformer($transformer)
- * @method static setSerializer($transformer)
+ * @method DataTableAbstract setTransformer($transformer)
+ * @method DataTableAbstract setSerializer($transformer)
  *
  * @property-read mixed $transformer
  * @property-read mixed $serializer
@@ -52,7 +53,6 @@ abstract class DataTableAbstract implements DataTable
      */
     protected array $columnDef = [
         'index' => false,
-        'ignore_getters' => false,
         'append' => [],
         'edit' => [],
         'filter' => [],
@@ -72,16 +72,16 @@ abstract class DataTableAbstract implements DataTable
     /**
      * Total records.
      *
-     * @var int|null
+     * @var int
      */
-    protected ?int $totalRecords = null;
+    protected int $totalRecords = 0;
 
     /**
      * Total filtered records.
      *
-     * @var int|null
+     * @var int
      */
-    protected ?int $filteredRecords = null;
+    protected int $filteredRecords = 0;
 
     /**
      * Auto-filter flag.
@@ -103,21 +103,28 @@ abstract class DataTableAbstract implements DataTable
      * @var array
      */
     protected array $templates = [
-        'DT_RowId'    => '',
+        'DT_RowId' => '',
         'DT_RowClass' => '',
-        'DT_RowData'  => [],
-        'DT_RowAttr'  => [],
+        'DT_RowData' => [],
+        'DT_RowAttr' => [],
     ];
+
+    /**
+     * [internal] Track if any filter was applied for at least one column.
+     *
+     * @var bool
+     */
+    protected bool $isFilterApplied = false;
 
     /**
      * Custom ordering callback.
      *
-     * @var callable|null
+     * @var ?callable
      */
     protected $orderCallback = null;
 
     /**
-     * Skip pagination as needed.
+     * Skip paginate as needed.
      *
      * @var bool
      */
@@ -145,10 +152,6 @@ abstract class DataTableAbstract implements DataTable
      */
     protected array $searchPanes = [];
 
-    protected mixed $transformer;
-
-    protected bool $editOnlySelectedColumns = false;
-
     /**
      * Can the DataTable engine be created with these parameters.
      *
@@ -168,15 +171,18 @@ abstract class DataTableAbstract implements DataTable
      */
     public static function create($source)
     {
+        /** @phpstan-ignore-next-line */
         return new static($source);
     }
 
     /**
      * @param  string|array  $columns
-     * @param  string|callable|\Yajra\DataTables\Contracts\Formatter  $formatter
-     * @return $this
+     * @param  string|\Yajra\DataTables\Contracts\Formatter  $formatter
+     * @return static
+     *
+     * @throws \Yajra\DataTables\Exceptions\Exception
      */
-    public function formatColumn($columns, $formatter): static
+    public function formatColumn($columns, $formatter): self
     {
         if (is_string($formatter) && class_exists($formatter)) {
             $formatter = app($formatter);
@@ -190,29 +196,7 @@ abstract class DataTableAbstract implements DataTable
             return $this;
         }
 
-        if (is_callable($formatter)) {
-            foreach ((array) $columns as $column) {
-                $this->addColumn(
-                    $column.'_formatted',
-                    function ($row) use ($column, $formatter) {
-                        return $formatter(data_get($row, $column), $row);
-                    }
-                );
-            }
-
-            return $this;
-        }
-
-        foreach ((array) $columns as $column) {
-            $this->addColumn(
-                $column.'_formatted',
-                function ($row) use ($column) {
-                    return data_get($row, $column);
-                }
-            );
-        }
-
-        return $this;
+        throw new Exception('$formatter must be an instance of '.Formatter::class);
     }
 
     /**
@@ -221,9 +205,9 @@ abstract class DataTableAbstract implements DataTable
      * @param  string  $name
      * @param  string|callable|Formatter  $content
      * @param  bool|int  $order
-     * @return $this
+     * @return static
      */
-    public function addColumn($name, $content, $order = false): static
+    public function addColumn($name, $content, $order = false): self
     {
         $this->extraColumns[] = $name;
 
@@ -235,24 +219,11 @@ abstract class DataTableAbstract implements DataTable
     /**
      * Add DT row index column on response.
      *
-     * @return $this
+     * @return static
      */
-    public function addIndexColumn(): static
+    public function addIndexColumn(): self
     {
         $this->columnDef['index'] = true;
-
-        return $this;
-    }
-
-    /**
-     * Prevent the getters Mutators to be applied when converting a collection
-     * of the Models into the final JSON.
-     *
-     * @return $this
-     */
-    public function ignoreGetters(): static
-    {
-        $this->columnDef['ignore_getters'] = true;
 
         return $this;
     }
@@ -262,17 +233,11 @@ abstract class DataTableAbstract implements DataTable
      *
      * @param  string  $name
      * @param  string|callable  $content
-     * @return $this
+     * @return static
      */
-    public function editColumn($name, $content): static
+    public function editColumn($name, $content): self
     {
-        if ($this->editOnlySelectedColumns) {
-            if (! count($this->request->columns()) || in_array($name, Arr::pluck($this->request->columns(), 'name'))) {
-                $this->columnDef['edit'][] = ['name' => $name, 'content' => $content];
-            }
-        } else {
-            $this->columnDef['edit'][] = ['name' => $name, 'content' => $content];
-        }
+        $this->columnDef['edit'][] = ['name' => $name, 'content' => $content];
 
         return $this;
     }
@@ -280,9 +245,9 @@ abstract class DataTableAbstract implements DataTable
     /**
      * Remove column from collection.
      *
-     * @return $this
+     * @return static
      */
-    public function removeColumn(): static
+    public function removeColumn(): self
     {
         $names = func_get_args();
         $this->columnDef['excess'] = array_merge($this->getColumnsDefinition()['excess'], $names);
@@ -307,9 +272,9 @@ abstract class DataTableAbstract implements DataTable
      * Get only selected columns in response.
      *
      * @param  array  $columns
-     * @return $this
+     * @return static
      */
-    public function only(array $columns = []): static
+    public function only(array $columns = []): self
     {
         $this->columnDef['only'] = $columns;
 
@@ -320,9 +285,9 @@ abstract class DataTableAbstract implements DataTable
      * Declare columns to escape values.
      *
      * @param  string|array  $columns
-     * @return $this
+     * @return static
      */
-    public function escapeColumns($columns = '*'): static
+    public function escapeColumns($columns = '*'): self
     {
         $this->columnDef['escape'] = $columns;
 
@@ -333,9 +298,9 @@ abstract class DataTableAbstract implements DataTable
      * Add a makeHidden() to the row object.
      *
      * @param  array  $attributes
-     * @return $this
+     * @return static
      */
-    public function makeHidden(array $attributes = []): static
+    public function makeHidden(array $attributes = []): self
     {
         $hidden = (array) Arr::get($this->columnDef, 'hidden', []);
         $this->columnDef['hidden'] = array_merge_recursive($hidden, $attributes);
@@ -347,9 +312,9 @@ abstract class DataTableAbstract implements DataTable
      * Add a makeVisible() to the row object.
      *
      * @param  array  $attributes
-     * @return $this
+     * @return static
      */
-    public function makeVisible(array $attributes = []): static
+    public function makeVisible(array $attributes = []): self
     {
         $visible = (array) Arr::get($this->columnDef, 'visible', []);
         $this->columnDef['visible'] = array_merge_recursive($visible, $attributes);
@@ -363,9 +328,9 @@ abstract class DataTableAbstract implements DataTable
      *
      * @param  array  $columns
      * @param  bool  $merge
-     * @return $this
+     * @return static
      */
-    public function rawColumns(array $columns, $merge = false): static
+    public function rawColumns(array $columns, $merge = false): self
     {
         if ($merge) {
             /** @var array[] $config */
@@ -384,9 +349,9 @@ abstract class DataTableAbstract implements DataTable
      * result: <tr class="output_from_your_template">.
      *
      * @param  string|callable  $content
-     * @return $this
+     * @return static
      */
-    public function setRowClass($content): static
+    public function setRowClass($content): self
     {
         $this->templates['DT_RowClass'] = $content;
 
@@ -398,9 +363,9 @@ abstract class DataTableAbstract implements DataTable
      * result: <tr id="output_from_your_template">.
      *
      * @param  string|callable  $content
-     * @return $this
+     * @return static
      */
-    public function setRowId($content): static
+    public function setRowId($content): self
     {
         $this->templates['DT_RowId'] = $content;
 
@@ -411,9 +376,9 @@ abstract class DataTableAbstract implements DataTable
      * Set DT_RowData templates.
      *
      * @param  array  $data
-     * @return $this
+     * @return static
      */
-    public function setRowData(array $data): static
+    public function setRowData(array $data): self
     {
         $this->templates['DT_RowData'] = $data;
 
@@ -425,9 +390,9 @@ abstract class DataTableAbstract implements DataTable
      *
      * @param  string  $key
      * @param  string|callable  $value
-     * @return $this
+     * @return static
      */
-    public function addRowData($key, $value): static
+    public function addRowData($key, $value): self
     {
         $this->templates['DT_RowData'][$key] = $value;
 
@@ -439,9 +404,9 @@ abstract class DataTableAbstract implements DataTable
      * result: <tr attr1="attr1" attr2="attr2">.
      *
      * @param  array  $data
-     * @return $this
+     * @return static
      */
-    public function setRowAttr(array $data): static
+    public function setRowAttr(array $data): self
     {
         $this->templates['DT_RowAttr'] = $data;
 
@@ -453,9 +418,9 @@ abstract class DataTableAbstract implements DataTable
      *
      * @param  string  $key
      * @param  string|callable  $value
-     * @return $this
+     * @return static
      */
-    public function addRowAttr($key, $value): static
+    public function addRowAttr($key, $value): self
     {
         $this->templates['DT_RowAttr'][$key] = $value;
 
@@ -467,12 +432,14 @@ abstract class DataTableAbstract implements DataTable
      *
      * @param  mixed  $key
      * @param  mixed  $value
-     * @return $this
+     * @return static
      */
-    public function with($key, $value = ''): static
+    public function with($key, $value = ''): self
     {
         if (is_array($key)) {
             $this->appends = $key;
+        } elseif (is_callable($value)) {
+            $this->appends[$key] = value($value);
         } else {
             $this->appends[$key] = value($value);
         }
@@ -485,9 +452,9 @@ abstract class DataTableAbstract implements DataTable
      *
      * @param  string  $key
      * @param  callable  $value
-     * @return $this
+     * @return static
      */
-    public function withQuery(string $key, callable $value): static
+    public function withQuery($key, callable $value): self
     {
         $this->appends[$key] = $value;
 
@@ -498,9 +465,9 @@ abstract class DataTableAbstract implements DataTable
      * Override default ordering method with a closure callback.
      *
      * @param  callable  $closure
-     * @return $this
+     * @return static
      */
-    public function order(callable $closure): static
+    public function order(callable $closure): self
     {
         $this->orderCallback = $closure;
 
@@ -511,9 +478,9 @@ abstract class DataTableAbstract implements DataTable
      * Update list of columns that is not allowed for search/sort.
      *
      * @param  array  $blacklist
-     * @return $this
+     * @return static
      */
-    public function blacklist(array $blacklist): static
+    public function blacklist(array $blacklist): self
     {
         $this->columnDef['blacklist'] = $blacklist;
 
@@ -524,9 +491,9 @@ abstract class DataTableAbstract implements DataTable
      * Update list of columns that is allowed for search/sort.
      *
      * @param  string|array  $whitelist
-     * @return $this
+     * @return static
      */
-    public function whitelist(array|string $whitelist = '*'): static
+    public function whitelist($whitelist = '*'): self
     {
         $this->columnDef['whitelist'] = $whitelist;
 
@@ -537,9 +504,9 @@ abstract class DataTableAbstract implements DataTable
      * Set smart search config at runtime.
      *
      * @param  bool  $state
-     * @return $this
+     * @return static
      */
-    public function smart(bool $state = true): static
+    public function smart($state = true): self
     {
         $this->config->set('datatables.search.smart', $state);
 
@@ -550,9 +517,9 @@ abstract class DataTableAbstract implements DataTable
      * Set starts_with search config at runtime.
      *
      * @param  bool  $state
-     * @return $this
+     * @return static
      */
-    public function startsWithSearch(bool $state = true): static
+    public function startsWithSearch($state = true): self
     {
         $this->config->set('datatables.search.starts_with', $state);
 
@@ -563,9 +530,9 @@ abstract class DataTableAbstract implements DataTable
      * Set multi_term search config at runtime.
      *
      * @param  bool  $multiTerm
-     * @return $this
+     * @return static
      */
-    public function setMultiTerm(bool $multiTerm = true): static
+    public function setMultiTerm($multiTerm = true): self
     {
         $this->config->set('datatables.search.multi_term', $multiTerm);
 
@@ -576,26 +543,11 @@ abstract class DataTableAbstract implements DataTable
      * Set total records manually.
      *
      * @param  int  $total
-     * @return $this
+     * @return static
      */
-    public function setTotalRecords(int $total): static
+    public function setTotalRecords($total): self
     {
         $this->totalRecords = $total;
-
-        return $this;
-    }
-
-    /**
-     * Skip total records and set the recordsTotal equals to recordsFiltered.
-     * This will improve the performance by skipping the total count query.
-     *
-     * @return $this
-     *
-     * @deprecated Just use setTotalRecords instead.
-     */
-    public function skipTotalRecords(): static
-    {
-        $this->totalRecords = 0;
 
         return $this;
     }
@@ -604,9 +556,9 @@ abstract class DataTableAbstract implements DataTable
      * Set filtered records manually.
      *
      * @param  int  $total
-     * @return $this
+     * @return static
      */
-    public function setFilteredRecords(int $total): static
+    public function setFilteredRecords($total): self
     {
         $this->filteredRecords = $total;
 
@@ -616,23 +568,11 @@ abstract class DataTableAbstract implements DataTable
     /**
      * Skip pagination as needed.
      *
-     * @return $this
+     * @return static
      */
-    public function skipPaging(): static
+    public function skipPaging(): self
     {
         $this->skipPaging = true;
-
-        return $this;
-    }
-
-    /**
-     * Skip auto filtering as needed.
-     *
-     * @return $this
-     */
-    public function skipAutoFilter(): static
-    {
-        $this->autoFilter = false;
 
         return $this;
     }
@@ -641,9 +581,9 @@ abstract class DataTableAbstract implements DataTable
      * Push a new column name to blacklist.
      *
      * @param  string  $column
-     * @return $this
+     * @return static
      */
-    public function pushToBlacklist($column): static
+    public function pushToBlacklist($column): self
     {
         if (! $this->isBlacklisted($column)) {
             $this->columnDef['blacklist'][] = $column;
@@ -681,7 +621,7 @@ abstract class DataTableAbstract implements DataTable
     public function ordering(): void
     {
         if ($this->orderCallback) {
-            call_user_func_array($this->orderCallback, $this->resolveCallbackParameter());
+            call_user_func($this->orderCallback, $this->resolveCallbackParameter());
         } else {
             $this->defaultOrdering();
         }
@@ -690,7 +630,7 @@ abstract class DataTableAbstract implements DataTable
     /**
      * Resolve callback parameter instance.
      *
-     * @return array<int|string, mixed>
+     * @return mixed
      */
     abstract protected function resolveCallbackParameter();
 
@@ -707,11 +647,12 @@ abstract class DataTableAbstract implements DataTable
      *
      * @param  callable  $callback
      * @param  bool  $globalSearch
-     * @return $this
+     * @return static
      */
-    public function filter(callable $callback, $globalSearch = false): static
+    public function filter(callable $callback, $globalSearch = false): self
     {
         $this->autoFilter = $globalSearch;
+        $this->isFilterApplied = true;
         $this->filterCallback = $callback;
 
         return $this;
@@ -738,9 +679,9 @@ abstract class DataTableAbstract implements DataTable
      * @param  string  $column
      * @param  mixed  $options
      * @param  callable|null  $builder
-     * @return $this
+     * @return static
      */
-    public function searchPane($column, $options, callable $builder = null): static
+    public function searchPane($column, $options, callable $builder = null): self
     {
         $options = value($options);
 
@@ -776,12 +717,12 @@ abstract class DataTableAbstract implements DataTable
         }
 
         if (is_callable($this->filterCallback)) {
-            call_user_func_array($this->filterCallback, $this->resolveCallbackParameter());
+            call_user_func($this->filterCallback, $this->resolveCallbackParameter());
         }
 
         $this->columnSearch();
         $this->searchPanesSearch();
-        $this->filteredCount();
+        $this->filteredRecords = $this->isFilterApplied ? $this->filteredCount() : $this->totalRecords;
     }
 
     /**
@@ -839,23 +780,13 @@ abstract class DataTableAbstract implements DataTable
     }
 
     /**
-     * Count total items.
-     *
-     * @return int
-     */
-    public function totalCount(): int
-    {
-        return $this->totalRecords ??= $this->count();
-    }
-
-    /**
      * Count filtered items.
      *
      * @return int
      */
     protected function filteredCount(): int
     {
-        return $this->filteredRecords ??= $this->count();
+        return $this->filteredRecords ?: $this->count();
     }
 
     /**
@@ -896,8 +827,6 @@ abstract class DataTableAbstract implements DataTable
      * @param  iterable  $results
      * @param  bool  $object
      * @return array
-     *
-     * @throws \Exception
      */
     protected function processResults($results, $object = false): array
     {
@@ -920,10 +849,10 @@ abstract class DataTableAbstract implements DataTable
     protected function render(array $data): JsonResponse
     {
         $output = $this->attachAppends([
-            'draw'            => $this->request->draw(),
-            'recordsTotal'    => $this->totalRecords,
-            'recordsFiltered' => $this->filteredRecords ?? 0,
-            'data'            => $data,
+            'draw' => $this->request->draw(),
+            'recordsTotal' => $this->totalRecords,
+            'recordsFiltered' => $this->filteredRecords,
+            'data' => $data,
         ]);
 
         if ($this->config->isDebugging()) {
@@ -987,11 +916,11 @@ abstract class DataTableAbstract implements DataTable
         $this->getLogger()->error($exception);
 
         return new JsonResponse([
-            'draw'            => $this->request->draw(),
-            'recordsTotal'    => $this->totalRecords,
+            'draw' => $this->request->draw(),
+            'recordsTotal' => $this->totalRecords,
             'recordsFiltered' => 0,
-            'data'            => [],
-            'error'           => $error ? __($error) : "Exception Message:\n\n".$exception->getMessage(),
+            'data' => [],
+            'error' => $error ? __($error) : "Exception Message:\n\n".$exception->getMessage(),
         ]);
     }
 
@@ -1011,9 +940,9 @@ abstract class DataTableAbstract implements DataTable
      * Set monolog/logger instance.
      *
      * @param  \Psr\Log\LoggerInterface  $logger
-     * @return $this
+     * @return static
      */
-    public function setLogger(LoggerInterface $logger): static
+    public function setLogger(LoggerInterface $logger): self
     {
         $this->logger = $logger;
 
@@ -1091,12 +1020,5 @@ abstract class DataTableAbstract implements DataTable
     protected function getPrimaryKeyName(): string
     {
         return 'id';
-    }
-
-    public function editOnlySelectedColumns(): static
-    {
-        $this->editOnlySelectedColumns = true;
-
-        return $this;
     }
 }

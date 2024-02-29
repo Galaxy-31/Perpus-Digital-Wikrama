@@ -4,7 +4,6 @@
 
 - `ApiResourceDataTable` support dropped, use `CollectionDataTable` instead.
 - `queryBuilder()` deprecated method removed, use `query()` instead.
-- Methods signature were updated to PHP8 syntax, adjust as needed if you extended the package.
 
 ## Upgrading from v8.x to v9.x
 

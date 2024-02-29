@@ -8,5 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class buku extends Model
 {
     use HasFactory;
-    protected $fillable = ['IUD','judul', 'pengarang', 'penerbit', 'kategori', 'tahun'];
+
+    protected $fillable = [
+        'IUD',
+        'judul',
+        'pengarang',
+        'penerbit',
+        'kategori',
+        'tahun'];
+
 }

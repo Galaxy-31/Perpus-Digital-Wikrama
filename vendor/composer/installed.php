@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'ab0d9a77664db417e9ed9772b81583a67368d308',
+        'reference' => '2acd9e614d4754af1060676f20fc3b41da09479c',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -394,7 +394,11 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
+<<<<<<< HEAD
             'reference' => 'ab0d9a77664db417e9ed9772b81583a67368d308',
+=======
+            'reference' => '2acd9e614d4754af1060676f20fc3b41da09479c',
+>>>>>>> 46568996e816e07d7ba2a97396fe15eae5d4cfec
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1037,6 +1041,15 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
+        'spatie/laravel-html' => array(
+            'pretty_version' => '3.5.0',
+            'version' => '3.5.0.0',
+            'reference' => 'ead179a8b6802647027486049f5209bd23b610a9',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../spatie/laravel-html',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'spatie/laravel-ignition' => array(
             'pretty_version' => '1.6.4',
             'version' => '1.6.4.0',
@@ -1410,9 +1423,15 @@
             'dev_requirement' => false,
         ),
         'yajra/laravel-datatables-oracle' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v10.11.3',
             'version' => '10.11.3.0',
             'reference' => 'd110a78db8dc76a61bdbb8364502c771ff71d5ff',
+=======
+            'pretty_version' => 'v10.0.0',
+            'version' => '10.0.0.0',
+            'reference' => 'fcbecbcc5f4d475ceb33cf84c20363137a4e5d82',
+>>>>>>> 46568996e816e07d7ba2a97396fe15eae5d4cfec
             'type' => 'library',
             'install_path' => __DIR__ . '/../yajra/laravel-datatables-oracle',
             'aliases' => array(),

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\histori;
+use App\Models\Histori;
 use App\Models\Buku;
 use App\Models\Anggota;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-class historiController extends Controller
+class HistoriController extends Controller
 {
     public function index()
     {

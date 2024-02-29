@@ -23,8 +23,10 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        <table class="table table-bordered">
-            <tr>
+        <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+        <table class="table table-bordered,sortable">
+            <tr style="color:black" class align="center">
+                <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
                 <th>No</th>
                 <th>ID Buku</th>
                 <th>Judul</th>
@@ -32,12 +34,14 @@
                 <th>Nama Penerbit</th>
                 <th>Kategori</th>
                 <th>Tahun Dirilis</th>
-                <th width="280px">Action</th>
+                <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+                <th width="240px">Action</th>
             </tr>
             @foreach ($bukus as $buku)
                 <tr>
                     <td>{{ ++$i }}</td>
-                    <td>{{ $buku->IUD }}</td>
+                    <td>{{ $buku->IUD }}<div class="mb-3">{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</div>
+                    </td>
                     <td>{{ $buku->judul }}</td>
                     <td>{{ $buku->pengarang }}</td>
                     <td>{{ $buku->penerbit }}</td>
@@ -45,13 +49,12 @@
                     <td>{{ $buku->tahun }}</td>
                     <td>
                         <form action="{{ route('bukus.destroy', $buku->id) }}" method="POST">
-                            <a class="btn btn-info" href="{{ route('bukus.show', $buku->id) }}"><i
-                                    class="fa-solid fa-eye"></i></a>
+                            {{-- <a class="btn btn-info" href="{{ route('bukus.show', $buku->id) }}"><i class="fa-solid fa-eye"></i></a> --}}
                             <a class="btn btn-primary" href="{{ route('bukus.edit', $buku->id) }}"><i
                                     class="fa-solid fa-pen-to-square"></i></a>
                             <!-- <button type="button"  data-toggle="modal"
-                                        data-target="#exampleModalCenter">
-                                    </button>  -->
+                                                    data-target="#exampleModalCenter">
+                                                </button>  -->
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger"
@@ -140,23 +143,23 @@
                                 </div>
                             </div>
                             <!-- <select class="form-control" id="tahun" name="tahun">
-                                                    <option value="Pilih Tahun" selected disabled>Pilih Tahun</option>
-                                                    <option value="2000">2000</option>
-                                                    <option value="2001">2001</option>
-                                                    <option value="2002">2002</option>
-                                                    <option value="2003">2003</option>
-                                                    <option value="2004">2004</option>
-                                                    <option value="2005">2005</option>
-                                                    <option value="2006">2006</option>
-                                                    <option value="2007">2007</option>
-                                                    <option value="2008">2008</option>
-                                                    <option value="2008">2008</option>
-                                                    <option value="2009">2009</option>
-                                                    <option value="2010">2010</option>
-                                                    <option value="2011">2011</option>
-                                                    <option value="2012">2012</option>
+                                                                <option value="Pilih Tahun" selected disabled>Pilih Tahun</option>
+                                                                <option value="2000">2000</option>
+                                                                <option value="2001">2001</option>
+                                                                <option value="2002">2002</option>
+                                                                <option value="2003">2003</option>
+                                                                <option value="2004">2004</option>
+                                                                <option value="2005">2005</option>
+                                                                <option value="2006">2006</option>
+                                                                <option value="2007">2007</option>
+                                                                <option value="2008">2008</option>
+                                                                <option value="2008">2008</option>
+                                                                <option value="2009">2009</option>
+                                                                <option value="2010">2010</option>
+                                                                <option value="2011">2011</option>
+                                                                <option value="2012">2012</option>
 
-                                                </select> -->
+                                                            </select> -->
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
