@@ -27,6 +27,13 @@ class BukuController extends Controller
         return Excel::download(new BukusExport, 'Laporan Buku.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
     }
 
+    public function search(Request $request)
+    {
+        $keyword = $request->search;
+        $bukus = Buku::where('name', 'like', "%" . $keyword . "%")->paginate(5);
+        return view('bukus.index', compact('bukus'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
     public function create()
     {
         return view('bukus.create');
