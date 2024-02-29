@@ -27,7 +27,8 @@ Route::group(['middleware' => ['auth']], function ()
         //Pdf & Excell
           Route::get('bukus/export-excel', [BukuController::class, 'exportExcel'])->name('bukus.export-excel');
           Route::get('bukus/export-pdf', [BukuController::class, 'exportPDF'])->name('bukus.export-pdf');
-        Route::resource('/bukus', BukuController::class);
+          Route::resource('/bukus', BukuController::class);
+          Route::get('/search', [BukuController::class, 'search'])->name('search');
         //pdf & Excel
         Route::resource('/users', UserController::class);
         Route::resource('/peminjamans', PeminjamanController::class);
