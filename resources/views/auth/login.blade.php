@@ -24,7 +24,7 @@
         <div class="mb-3">
             <p>Email</p>
             <input type="email" class="form-control form-control-lg @error('email') has-error @enderror"
-                placeholder="Email" aria-label="Email" name="email" value="{{ old('email') }}" required
+                placeholder="Masukkan Email Anda" aria-label="Email" name="email" value="{{ old('email') }}" required
                 autocomplete="email" autofocus>
             @if (Session::has('error'))
                 <div class="alert alert-danger">
@@ -35,7 +35,7 @@
         <div class="mb-3">
             <p>Password</p>
             <input type="password" class="form-control form-control-lg @error('password') has-error @enderror"
-                placeholder="Password" aria-label="Password" name="password" required autocomplete="current-password">
+                placeholder="Masukkan Password Anda" aria-label="Password" name="password" required autocomplete="current-password">
             @if (Session::has('error'))
                 <div class="alert alert-danger">
                     {{ Session::get('error') }}
