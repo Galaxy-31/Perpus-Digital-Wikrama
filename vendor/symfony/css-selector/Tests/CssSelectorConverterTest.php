@@ -48,7 +48,8 @@ class CssSelectorConverterTest extends TestCase
     {
         $this->expectException(ParseException::class);
         $this->expectExceptionMessage('Expected identifier, but <eof at 3> found.');
-        (new CssSelectorConverter())->toXPath('h1:');
+        $converter = new CssSelectorConverter();
+        $converter->toXPath('h1:');
     }
 
     /** @dataProvider getCssToXPathWithoutPrefixTestData */
@@ -59,7 +60,7 @@ class CssSelectorConverterTest extends TestCase
         $this->assertEquals($xpath, $converter->toXPath($css, ''), '->parse() parses an input string and returns a node');
     }
 
-    public static function getCssToXPathWithoutPrefixTestData(): array
+    public function getCssToXPathWithoutPrefixTestData()
     {
         return [
             ['h1', 'h1'],

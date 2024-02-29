@@ -14,7 +14,6 @@ namespace Symfony\Component\String\Resources;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\String\Exception\RuntimeException;
 use Symfony\Component\VarExporter\VarExporter;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * @internal
@@ -22,7 +21,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 final class WcswidthDataGenerator
 {
     private string $outDir;
-    private HttpClientInterface $client;
+    private $client;
 
     public function __construct(string $outDir)
     {
@@ -46,7 +45,7 @@ final class WcswidthDataGenerator
 
         $version = $matches[1];
 
-        if (!preg_match_all('/^([A-H\d]{4,})(?:\.\.([A-H\d]{4,}))? +; [W|F]/m', $content, $matches, \PREG_SET_ORDER)) {
+        if (!preg_match_all('/^([A-H\d]{4,})(?:\.\.([A-H\d]{4,}))?;[W|F]/m', $content, $matches, \PREG_SET_ORDER)) {
             throw new RuntimeException('The wide width pattern did not match anything.');
         }
 
@@ -104,7 +103,9 @@ EOT;
             return [hexdec($start), hexdec($end)];
         }, $rawData);
 
-        usort($data, static fn (array $a, array $b): int => $a[0] - $b[0]);
+        usort($data, static function (array $a, array $b): int {
+            return $a[0] - $b[0];
+        });
 
         return $data;
     }

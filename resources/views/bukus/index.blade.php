@@ -13,6 +13,13 @@
                         Masukan Buku Baru
                     </a>
                 </div>
+                <form class="form" method="get" action="{{ route('search') }}">
+    <div class="form-group w-100 mb-3">
+        <label for="search" class="d-block mr-2">Pencarian</label>
+        <input type="text" name="search" class="form-control w-20 d-inline" id="search" placeholder="Masukkan keyword">
+        <button type="submit" class="btn btn-primary mb-1">Cari</button>
+    </div>
+</form>
                 <div class="dropdown w-auto" class align="right">
                     <a class="btn btn-success dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">

@@ -38,68 +38,56 @@ class TranslatorTest extends TestCase
 
     public function testCssToXPathPseudoElement()
     {
+        $this->expectException(ExpressionErrorException::class);
         $translator = new Translator();
         $translator->registerExtension(new HtmlExtension($translator));
-
-        $this->expectException(ExpressionErrorException::class);
-
         $translator->cssToXPath('e::first-line');
     }
 
     public function testGetExtensionNotExistsExtension()
     {
+        $this->expectException(ExpressionErrorException::class);
         $translator = new Translator();
         $translator->registerExtension(new HtmlExtension($translator));
-
-        $this->expectException(ExpressionErrorException::class);
-
         $translator->getExtension('fake');
     }
 
     public function testAddCombinationNotExistsExtension()
     {
+        $this->expectException(ExpressionErrorException::class);
         $translator = new Translator();
         $translator->registerExtension(new HtmlExtension($translator));
         $parser = new Parser();
         $xpath = $parser->parse('*')[0];
         $combinedXpath = $parser->parse('*')[0];
-
-        $this->expectException(ExpressionErrorException::class);
-
         $translator->addCombination('fake', $xpath, $combinedXpath);
     }
 
     public function testAddFunctionNotExistsFunction()
     {
+        $this->expectException(ExpressionErrorException::class);
         $translator = new Translator();
         $translator->registerExtension(new HtmlExtension($translator));
         $xpath = new XPathExpr();
         $function = new FunctionNode(new ElementNode(), 'fake');
-
-        $this->expectException(ExpressionErrorException::class);
-
         $translator->addFunction($xpath, $function);
     }
 
     public function testAddPseudoClassNotExistsClass()
     {
+        $this->expectException(ExpressionErrorException::class);
         $translator = new Translator();
         $translator->registerExtension(new HtmlExtension($translator));
         $xpath = new XPathExpr();
-
-        $this->expectException(ExpressionErrorException::class);
-
         $translator->addPseudoClass($xpath, 'fake');
     }
 
     public function testAddAttributeMatchingClassNotExistsClass()
     {
+        $this->expectException(ExpressionErrorException::class);
         $translator = new Translator();
         $translator->registerExtension(new HtmlExtension($translator));
         $xpath = new XPathExpr();
-
-        $this->expectException(ExpressionErrorException::class);
-
         $translator->addAttributeMatching($xpath, '', '', '');
     }
 
@@ -126,7 +114,7 @@ class TranslatorTest extends TestCase
         $document->loadHTMLFile(__DIR__.'/Fixtures/ids.html');
         $document = simplexml_import_dom($document);
         $elements = $document->xpath($translator->cssToXPath($css));
-        $this->assertCount(\count($elementsId), $elements);
+        $this->assertCount(\count($elementsId), $elementsId);
         foreach ($elements as $element) {
             if (null !== $element->attributes()->id) {
                 $this->assertContains((string) $element->attributes()->id, $elementsId);
@@ -177,7 +165,7 @@ HTML
         $this->assertSame('A', $nodeList->item(0)->textContent);
     }
 
-    public static function getXpathLiteralTestData()
+    public function getXpathLiteralTestData()
     {
         return [
             ['foo', "'foo'"],
@@ -187,7 +175,7 @@ HTML
         ];
     }
 
-    public static function getCssToXPathTestData()
+    public function getCssToXPathTestData()
     {
         return [
             ['*', '*'],
@@ -231,12 +219,10 @@ HTML
             ['e + f', "e/following-sibling::*[(name() = 'f') and (position() = 1)]"],
             ['e ~ f', 'e/following-sibling::f'],
             ['div#container p', "div[@id = 'container']/descendant-or-self::*/p"],
-            [':scope > div[dataimg="<testmessage>"]', "*[1]/div[@dataimg = '<testmessage>']"],
-            [':scope', '*[1]'],
         ];
     }
 
-    public static function getXmlLangTestData()
+    public function getXmlLangTestData()
     {
         return [
             [':lang("EN")', ['first', 'second', 'third', 'fourth']],
@@ -251,7 +237,7 @@ HTML
         ];
     }
 
-    public static function getHtmlIdsTestData()
+    public function getHtmlIdsTestData()
     {
         return [
             ['div', ['outer-div', 'li-div', 'foobar-div']],
@@ -316,14 +302,14 @@ HTML
             ['li:nth-last-child(-n+1)', ['seventh-li']],
             ['li:nth-last-child(-n+3)', ['fifth-li', 'sixth-li', 'seventh-li']],
             ['ol:first-of-type', ['first-ol']],
-            ['ol:nth-child(4)', ['first-ol']],
+            ['ol:nth-child(1)', ['first-ol']],
             ['ol:nth-of-type(2)', ['second-ol']],
             ['ol:nth-last-of-type(1)', ['second-ol']],
-            ['span:only-child', ['foobar-span', 'no-siblings-of-any-type']],
+            ['span:only-child', ['foobar-span']],
             ['li div:only-child', ['li-div']],
             ['div *:only-child', ['li-div', 'foobar-span']],
             ['p:only-of-type', ['paragraph']],
-            [':only-of-type', ['html', 'li-div', 'foobar-span', 'no-siblings-of-any-type']],
+            [':only-of-type', ['html', 'li-div', 'foobar-span', 'paragraph']],
             ['div#foobar-div :only-of-type', ['foobar-span']],
             ['a:empty', ['name-anchor']],
             ['a:EMpty', ['name-anchor']],
@@ -332,8 +318,8 @@ HTML
             ['html:root', ['html']],
             ['li:root', []],
             ['* :root', []],
-            ['*:contains("link")', ['html', 'nil', 'outer-div', 'tag-anchor', 'nofollow-anchor']],
-            [':CONtains("link")', ['html', 'nil', 'outer-div', 'tag-anchor', 'nofollow-anchor']],
+            ['*:contains("link")', ['html', 'outer-div', 'tag-anchor', 'nofollow-anchor']],
+            [':CONtains("link")', ['html', 'outer-div', 'tag-anchor', 'nofollow-anchor']],
             ['*:contains("LInk")', []],  // case sensitive
             ['*:contains("e")', ['html', 'nil', 'outer-div', 'first-ol', 'first-li', 'paragraph', 'p-em']],
             ['*:contains("E")', []],  // case-sensitive
@@ -376,7 +362,7 @@ HTML
         ];
     }
 
-    public static function getHtmlShakespearTestData()
+    public function getHtmlShakespearTestData()
     {
         return [
             ['*', 246],
@@ -425,9 +411,6 @@ HTML
             ['div[class|=dialog]', 50], // ? Seems right
             ['div[class!=madeup]', 243], // ? Seems right
             ['div[class~=dialog]', 51], // ? Seems right
-            [':scope > div', 1],
-            [':scope > div > div[class=dialog]', 1],
-            [':scope > div div', 242],
         ];
     }
 }

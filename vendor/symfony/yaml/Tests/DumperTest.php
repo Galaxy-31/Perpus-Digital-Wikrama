@@ -61,7 +61,7 @@ class DumperTest extends TestCase
         $expected = <<<'EOF'
 '': bar
 foo: '#bar'
-"foo'bar": {  }
+'foo''bar': {  }
 bar:
        - 1
        - foo
@@ -114,7 +114,7 @@ EOF;
     public function testInlineLevel()
     {
         $expected = <<<'EOF'
-{ '': bar, foo: '#bar', "foo'bar": {  }, bar: [1, foo, { a: A }], foobar: { foo: bar, bar: [1, foo], foobar: { foo: bar, bar: [1, foo] } } }
+{ '': bar, foo: '#bar', 'foo''bar': {  }, bar: [1, foo, { a: A }], foobar: { foo: bar, bar: [1, foo], foobar: { foo: bar, bar: [1, foo] } } }
 EOF;
         $this->assertSame($expected, $this->dumper->dump($this->array, -10), '->dump() takes an inline level argument');
         $this->assertSame($expected, $this->dumper->dump($this->array, 0), '->dump() takes an inline level argument');
@@ -123,7 +123,7 @@ EOF;
         $expected = <<<'EOF'
 '': bar
 foo: '#bar'
-"foo'bar": {  }
+'foo''bar': {  }
 bar: [1, foo, { a: A }]
 foobar: { foo: bar, bar: [1, foo], foobar: { foo: bar, bar: [1, foo] } }
 
@@ -134,7 +134,7 @@ EOF;
         $expected = <<<'EOF'
 '': bar
 foo: '#bar'
-"foo'bar": {  }
+'foo''bar': {  }
 bar:
     - 1
     - foo
@@ -151,7 +151,7 @@ EOF;
         $expected = <<<'EOF'
 '': bar
 foo: '#bar'
-"foo'bar": {  }
+'foo''bar': {  }
 bar:
     - 1
     - foo
@@ -173,7 +173,7 @@ EOF;
         $expected = <<<'EOF'
 '': bar
 foo: '#bar'
-"foo'bar": {  }
+'foo''bar': {  }
 bar:
     - 1
     - foo
@@ -225,7 +225,7 @@ EOF;
         $this->assertSameData($input, $this->parser->parse($expected));
     }
 
-    public static function getEscapeSequences()
+    public function getEscapeSequences()
     {
         return [
             'empty string' => ['', "''"],
@@ -275,7 +275,7 @@ EOF;
         $this->assertSameData($expected, $this->parser->parse($yaml, Yaml::PARSE_OBJECT_FOR_MAP));
     }
 
-    public static function objectAsMapProvider()
+    public function objectAsMapProvider()
     {
         $tests = [];
 
@@ -710,42 +710,6 @@ YAML
         $this->assertSame($data, $this->parser->parse($yml));
     }
 
-    public function testDumpMultiLineStringAsScalarBlockWhenFirstLineIsEmptyAndSecondLineHasLeadingSpace()
-    {
-        $data = [
-            'data' => [
-                'multi_line' => "\n    the second line has leading spaces\nThe third line does not.",
-            ],
-        ];
-
-        $expected = "data:\n    multi_line: |4-\n\n            the second line has leading spaces\n        The third line does not.";
-
-        $yml = $this->dumper->dump($data, 2, 0, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK);
-        $this->assertSame($expected, $yml);
-        $this->assertSame($data, $this->parser->parse($yml));
-    }
-
-    public function testDumpMultiLineStringAsScalarBlockWhenFirstLineHasOnlySpaces()
-    {
-        $data = [
-            'data' => [
-                'multi_line' => "    \nthe second line\nThe third line.",
-            ],
-        ];
-
-        $expectedData = [
-            'data' => [
-                'multi_line' => "\nthe second line\nThe third line.",
-            ],
-        ];
-
-        $expectedYml = "data:\n    multi_line: |-\n            \n        the second line\n        The third line.";
-
-        $yml = $this->dumper->dump($data, 2, 0, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK);
-        $this->assertSame($expectedYml, $yml);
-        $this->assertSame($expectedData, $this->parser->parse($yml));
-    }
-
     public function testCarriageReturnFollowedByNewlineIsMaintainedWhenDumpingAsMultiLineLiteralBlock()
     {
         $data = ["a\r\nb\nc"];
@@ -853,96 +817,6 @@ YAML;
         $this->assertSame('{ foo: ~ }', $this->dumper->dump(['foo' => null], 0, 0, Yaml::DUMP_NULL_AS_TILDE));
     }
 
-    /**
-     * @dataProvider getNumericKeyData
-     */
-    public function testDumpInlineNumericKeyAsString(array $input, bool $inline, int $flags, string $expected)
-    {
-        $this->assertSame($expected, $this->dumper->dump($input, $inline ? 0 : 4, 0, $flags));
-    }
-
-    public static function getNumericKeyData()
-    {
-        yield 'Int key with flag inline' => [
-            [200 => 'foo'],
-            true,
-            Yaml::DUMP_NUMERIC_KEY_AS_STRING,
-            "{ '200': foo }",
-        ];
-
-        yield 'Int key without flag inline' => [
-            [200 => 'foo'],
-            true,
-            0,
-            '{ 200: foo }',
-        ];
-
-        $expected = <<<'YAML'
-        '200': foo
-
-        YAML;
-
-        yield 'Int key with flag' => [
-            [200 => 'foo'],
-            false,
-            Yaml::DUMP_NUMERIC_KEY_AS_STRING,
-            $expected,
-        ];
-
-        $expected = <<<'YAML'
-        200: foo
-
-        YAML;
-
-        yield 'Int key without flag' => [
-            [200 => 'foo'],
-            false,
-            0,
-            $expected,
-        ];
-
-        $expected = <<<'YAML'
-        - 200
-        - foo
-
-        YAML;
-
-        yield 'List array with flag' => [
-            [200, 'foo'],
-            false,
-            Yaml::DUMP_NUMERIC_KEY_AS_STRING,
-            $expected,
-        ];
-
-        $expected = <<<'YAML'
-        '200': !number 5
-
-        YAML;
-
-        yield 'Int tagged value with flag' => [
-            [
-                200 => new TaggedValue('number', 5),
-            ],
-            false,
-            Yaml::DUMP_NUMERIC_KEY_AS_STRING,
-            $expected,
-        ];
-
-        $expected = <<<'YAML'
-        200: !number 5
-
-        YAML;
-
-        yield 'Int tagged value without flag' => [
-            [
-                200 => new TaggedValue('number', 5),
-            ],
-            false,
-            0,
-            $expected,
-        ];
-    }
-
     public function testDumpIdeographicSpaces()
     {
         $expected = <<<YAML
@@ -956,52 +830,6 @@ YAML;
             'within_string' => 'a　b',
             'regular_space' => 'a b',
         ], 2));
-    }
-
-    /**
-     * @dataProvider getDateTimeData
-     */
-    public function testDumpDateTime(array $input, string $expected)
-    {
-        $this->assertSame($expected, rtrim($this->dumper->dump($input, 1)));
-    }
-
-    public static function getDateTimeData()
-    {
-        yield 'Date without subsecond precision' => [
-            ['date' => new \DateTimeImmutable('2023-01-24T01:02:03Z')],
-            'date: 2023-01-24T01:02:03+00:00',
-        ];
-
-        yield 'Date with one digit for milliseconds' => [
-            ['date' => new \DateTimeImmutable('2023-01-24T01:02:03.4Z')],
-            'date: 2023-01-24T01:02:03.400+00:00',
-        ];
-
-        yield 'Date with two digits for milliseconds' => [
-            ['date' => new \DateTimeImmutable('2023-01-24T01:02:03.45Z')],
-            'date: 2023-01-24T01:02:03.450+00:00',
-        ];
-
-        yield 'Date with full milliseconds' => [
-            ['date' => new \DateTimeImmutable('2023-01-24T01:02:03.456Z')],
-            'date: 2023-01-24T01:02:03.456+00:00',
-        ];
-
-        yield 'Date with four digits for microseconds' => [
-            ['date' => new \DateTimeImmutable('2023-01-24T01:02:03.4567Z')],
-            'date: 2023-01-24T01:02:03.456700+00:00',
-        ];
-
-        yield 'Date with five digits for microseconds' => [
-            ['date' => new \DateTimeImmutable('2023-01-24T01:02:03.45678Z')],
-            'date: 2023-01-24T01:02:03.456780+00:00',
-        ];
-
-        yield 'Date with full microseconds' => [
-            ['date' => new \DateTimeImmutable('2023-01-24T01:02:03.456789Z')],
-            'date: 2023-01-24T01:02:03.456789+00:00',
-        ];
     }
 
     private function assertSameData($expected, $actual)

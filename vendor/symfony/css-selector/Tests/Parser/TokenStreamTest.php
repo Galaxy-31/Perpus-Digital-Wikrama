@@ -54,11 +54,10 @@ class TokenStreamTest extends TestCase
 
     public function testFailToGetNextIdentifier()
     {
-        $stream = new TokenStream();
-        $stream->push(new Token(Token::TYPE_DELIMITER, '.', 2));
-
         $this->expectException(SyntaxErrorException::class);
 
+        $stream = new TokenStream();
+        $stream->push(new Token(Token::TYPE_DELIMITER, '.', 2));
         $stream->getNextIdentifier();
     }
 
@@ -75,11 +74,10 @@ class TokenStreamTest extends TestCase
 
     public function testFailToGetNextIdentifierOrStar()
     {
-        $stream = new TokenStream();
-        $stream->push(new Token(Token::TYPE_DELIMITER, '.', 2));
-
         $this->expectException(SyntaxErrorException::class);
 
+        $stream = new TokenStream();
+        $stream->push(new Token(Token::TYPE_DELIMITER, '.', 2));
         $stream->getNextIdentifierOrStar();
     }
 

@@ -12,7 +12,6 @@
 namespace Symfony\Component\Yaml\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Tag\TaggedValue;
@@ -20,9 +19,8 @@ use Symfony\Component\Yaml\Yaml;
 
 class ParserTest extends TestCase
 {
-    use ExpectDeprecationTrait;
-
-    private ?Parser $parser;
+    /** @var Parser */
+    protected $parser;
 
     protected function setUp(): void
     {
@@ -126,14 +124,14 @@ YAML;
         $this->assertEquals($expected, var_export($this->parser->parse($yaml), true), $comment);
     }
 
-    public static function getDataFormSpecifications()
+    public function getDataFormSpecifications()
     {
-        return self::loadTestsFromFixtureFiles('index.yml');
+        return $this->loadTestsFromFixtureFiles('index.yml');
     }
 
-    public static function getNonStringMappingKeysData()
+    public function getNonStringMappingKeysData()
     {
-        return self::loadTestsFromFixtureFiles('nonStringKeys.yml');
+        return $this->loadTestsFromFixtureFiles('nonStringKeys.yml');
     }
 
     /**
@@ -146,7 +144,7 @@ YAML;
         $this->parser->parse($given);
     }
 
-    public static function invalidIndentation(): array
+    public function invalidIndentation(): array
     {
         return [
             [
@@ -191,7 +189,7 @@ YAML;
         $this->assertSameData($expected, $actual);
     }
 
-    public static function validTokenSeparators(): array
+    public function validTokenSeparators(): array
     {
         return [
             [
@@ -224,7 +222,7 @@ EOF;
         $this->assertEquals('foo', $this->parser->parse($yaml));
     }
 
-    public static function getBlockChompingTests()
+    public function getBlockChompingTests()
     {
         $tests = [];
 
@@ -588,7 +586,7 @@ EOF;
         $this->assertSameData($expected, $this->parser->parse($yaml, $flags));
     }
 
-    public static function getObjectForMapTests()
+    public function getObjectForMapTests()
     {
         $tests = [];
 
@@ -835,7 +833,7 @@ EOT;
         $this->assertSame($expected, $this->parser->parse($yaml));
     }
 
-    public static function getParseExceptionNotAffectedMultiLineStringLastResortParsing()
+    public function getParseExceptionNotAffectedMultiLineStringLastResortParsing()
     {
         $tests = [];
 
@@ -977,7 +975,7 @@ EOD;
         Yaml::parse($input);
     }
 
-    public static function getParseExceptionOnDuplicateData()
+    public function getParseExceptionOnDuplicateData()
     {
         $tests = [];
 
@@ -1282,7 +1280,7 @@ EOT;
         $this->assertSame($expectedParserResult, $this->parser->parse($yaml));
     }
 
-    public static function getCommentLikeStringInScalarBlockData()
+    public function getCommentLikeStringInScalarBlockData()
     {
         $tests = [];
 
@@ -1467,7 +1465,7 @@ EOT
         $this->assertSame(['data' => 'Hello world'], $this->parser->parse($data));
     }
 
-    public static function getBinaryData()
+    public function getBinaryData()
     {
         return [
             'enclosed with double quotes' => ['data: !!binary "SGVsbG8gd29ybGQ="'],
@@ -1499,7 +1497,7 @@ EOT
         $this->parser->parse($data);
     }
 
-    public static function getInvalidBinaryData()
+    public function getInvalidBinaryData()
     {
         return [
             'length not a multiple of four' => ['data: !!binary "SGVsbG8d29ybGQ="', '/The normalized base64 encoded data \(data without whitespace characters\) length must be a multiple of four \(\d+ bytes given\)/'],
@@ -1541,24 +1539,15 @@ EOT
         ];
     }
 
-    public function testParseDateWithSubseconds()
-    {
-        $yaml = <<<'EOT'
-date: 2002-12-14T01:23:45.670000Z
-EOT;
-
-        $this->assertSameData(['date' => 1039829025.67], $this->parser->parse($yaml));
-    }
-
     public function testParseDateAsMappingValue()
     {
         $yaml = <<<'EOT'
 date: 2002-12-14
 EOT;
-        $expectedDate = (new \DateTimeImmutable())
-            ->setTimeZone(new \DateTimeZone('UTC'))
-            ->setDate(2002, 12, 14)
-            ->setTime(0, 0, 0);
+        $expectedDate = new \DateTime();
+        $expectedDate->setTimeZone(new \DateTimeZone('UTC'));
+        $expectedDate->setDate(2002, 12, 14);
+        $expectedDate->setTime(0, 0, 0);
 
         $this->assertSameData(['date' => $expectedDate], $this->parser->parse($yaml, Yaml::PARSE_DATETIME));
     }
@@ -1574,7 +1563,7 @@ EOT;
         $this->parser->parse($yaml);
     }
 
-    public static function parserThrowsExceptionWithCorrectLineNumberProvider()
+    public function parserThrowsExceptionWithCorrectLineNumberProvider()
     {
         return [
             [
@@ -1731,7 +1720,7 @@ EOT;
         $this->assertSame($expected, $this->parser->parse($yaml));
     }
 
-    public static function escapedQuotationCharactersInQuotedStrings()
+    public function escapedQuotationCharactersInQuotedStrings()
     {
         return [
             'single quoted string' => [
@@ -1789,7 +1778,7 @@ YAML
         $this->assertSame($expected, $this->parser->parse($yaml));
     }
 
-    public static function multiLineDataProvider()
+    public function multiLineDataProvider()
     {
         $tests = [];
 
@@ -1856,7 +1845,7 @@ EOF;
         $this->assertSame($expected, $this->parser->parse($yaml));
     }
 
-    public static function inlineNotationSpanningMultipleLinesProvider(): array
+    public function inlineNotationSpanningMultipleLinesProvider(): array
     {
         return [
             'mapping' => [
@@ -2245,7 +2234,7 @@ YAML;
         $this->assertSameData($expected, $this->parser->parse($yaml, Yaml::PARSE_CUSTOM_TAGS));
     }
 
-    public static function taggedValuesProvider()
+    public function taggedValuesProvider()
     {
         return [
             'scalars' => [
@@ -2401,7 +2390,7 @@ INI;
         $this->parser->parse($ini);
     }
 
-    private static function loadTestsFromFixtureFiles($testsFile)
+    private function loadTestsFromFixtureFiles($testsFile)
     {
         $parser = new Parser();
 
@@ -2489,17 +2478,6 @@ YAML;
         $this->expectExceptionMessage('Missing value for tag "php/const:App\Kernel::SEMART_VERSION" at line 1 (near "!php/const:App\Kernel::SEMART_VERSION").');
 
         $this->parser->parse('!php/const:App\Kernel::SEMART_VERSION', Yaml::PARSE_CUSTOM_TAGS | Yaml::PARSE_CONSTANT);
-    }
-
-    /**
-     * @group legacy
-     */
-    public function testDeprecatedPhpConstantSyntaxAsScalarKey()
-    {
-        $this->expectDeprecation('Since symfony/yaml 6.2: YAML syntax for key "!php/const:Symfony\Component\Yaml\Tests\B::BAR" is deprecated and replaced by "!php/const Symfony\Component\Yaml\Tests\B::BAR".');
-        $actual = $this->parser->parse('!php/const:Symfony\Component\Yaml\Tests\B::BAR: value', Yaml::PARSE_CUSTOM_TAGS | Yaml::PARSE_CONSTANT);
-
-        $this->assertSame(['bar' => 'value'], $actual);
     }
 
     public function testPhpConstantTagMappingAsScalarKey()
@@ -2680,7 +2658,7 @@ EOE;
         $this->parser->parse($yaml, Yaml::PARSE_CUSTOM_TAGS);
     }
 
-    public static function circularReferenceProvider()
+    public function circularReferenceProvider()
     {
         $tests = [];
 
@@ -2712,44 +2690,6 @@ YAML;
         return $tests;
     }
 
-    public function testBlockScalarArray()
-    {
-        $yaml = <<<'YAML'
-anyOf:
-  - $ref: >-
-      #/string/bar
-anyOfMultiline:
-  - $ref: >-
-      #/string/bar
-      second line
-nested:
-  anyOf:
-    - $ref: >-
-        #/string/bar
-YAML;
-        $expected = [
-            'anyOf' => [
-                0 => [
-                    '$ref' => '#/string/bar',
-                ],
-            ],
-            'anyOfMultiline' => [
-                0 => [
-                    '$ref' => '#/string/bar second line',
-                ],
-            ],
-            'nested' => [
-                'anyOf' => [
-                    0 => [
-                        '$ref' => '#/string/bar',
-                    ],
-                ],
-            ],
-        ];
-
-        $this->assertSame($expected, $this->parser->parse($yaml));
-    }
-
     /**
      * @dataProvider indentedMappingData
      */
@@ -2758,7 +2698,7 @@ YAML;
         $this->assertSame($expected, $this->parser->parse($yaml));
     }
 
-    public static function indentedMappingData()
+    public function indentedMappingData()
     {
         $tests = [];
 

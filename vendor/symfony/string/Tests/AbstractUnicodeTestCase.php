@@ -44,7 +44,9 @@ END'],
 
     public function testAsciiClosureRule()
     {
-        $rule = fn ($c) => str_replace('ö', 'OE', $c);
+        $rule = function ($c) {
+            return str_replace('ö', 'OE', $c);
+        };
 
         $s = static::createFromString('Dieser Wert sollte größer oder gleich');
         $this->assertSame('Dieser Wert sollte grOEsser oder gleich', (string) $s->ascii([$rule]));
@@ -78,7 +80,7 @@ END'],
     /**
      * @dataProvider provideCodePointsAt
      */
-    public function testCodePointsAt(array $expected, string $string, int $offset, ?int $form = null)
+    public function testCodePointsAt(array $expected, string $string, int $offset, int $form = null)
     {
         if (2 !== grapheme_strlen('च्छे') && 'नमस्ते' === $string) {
             $this->markTestSkipped('Skipping due to issue ICU-21661.');
@@ -92,21 +94,14 @@ END'],
 
     public static function provideCodePointsAt(): array
     {
-        $data = [
+        return [
             [[], '', 0],
             [[], 'a', 1],
             [[0x53], 'Späßchen', 0],
             [[0xE4], 'Späßchen', 2],
             [[0xDF], 'Späßchen', -5],
+            [[0x260E], '☢☎❄', 1],
         ];
-
-        // Skip this set if we encounter an issue in PCRE2
-        // @see https://github.com/PCRE2Project/pcre2/issues/361
-        if (3 === grapheme_strlen('☢☎❄')) {
-            $data[] = [[0x260E], '☢☎❄', 1];
-        }
-
-        return $data;
     }
 
     public static function provideLength(): array

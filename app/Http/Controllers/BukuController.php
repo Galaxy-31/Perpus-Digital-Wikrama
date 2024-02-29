@@ -17,6 +17,13 @@ class BukuController extends Controller
         return view('bukus.index', compact('bukus'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    public function search(Request $request)
+    {
+        $keyword = $request->search;
+        $bukus = Buku::where('judul', 'pengarang', "%" . $keyword . "%")->paginate(5);
+        return view('bukus.index', compact('bukus'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
     public function exportExcel() 
     {
         return Excel::download(new BukusExport, 'Laporan Buku.xlsx');
