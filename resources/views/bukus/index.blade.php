@@ -46,6 +46,7 @@
                 <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
                 <th>No</th>
                 <th width="60px">ID Buku</th>
+                <th width="40px" height="30px">Cover Buku</th>
                 <th>Judul</th>
                 <th>Nama Pengarang</th>
                 <th>Nama Penerbit</th>
@@ -59,6 +60,7 @@
                     <td>{{ ++$i }}</td>
                     {{-- <td>{{ $buku->IUD }}<div class="mb-3">{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</div></td> --}}
                     <td>{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</td>
+                    <td>{{ $buku->image }}</td>
                     <td>{{ $buku->judul }}</td>
                     <td>{{ $buku->pengarang }}</td>
                     <td>{{ $buku->penerbit }}</td>
@@ -120,6 +122,12 @@
                                 <div class="form-group">
                                     <strong>Judul:</strong>
                                     <input type="text" name="judul"required class="form-control" placeholder="Judul">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>Upload Foto:</strong>
+                                    <input type="file" name="image" required class="form-control">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">

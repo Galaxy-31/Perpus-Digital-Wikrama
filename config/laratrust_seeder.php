@@ -24,6 +24,9 @@ return [
             'peminjamans' => 'c,r,u,d',
             'historis' => 'c,r,u,d',
         ],
+        'User' => [
+            'peminjamans' => 'c',
+        ],
     ],
 
     'permissions_map' => [

@@ -37,6 +37,15 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>Cover Buku:</strong>
+                    <input type="file" name="image" value="{{ $buku->image }}" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>pengarang:</strong>
                     <input type="text" name="pengarang" value="{{ $buku->pengarang }}" class="form-control"
                         placeholder="Pengarang">

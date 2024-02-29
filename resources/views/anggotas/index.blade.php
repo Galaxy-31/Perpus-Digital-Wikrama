@@ -36,8 +36,8 @@
             @foreach ($anggotas as $anggota)
                 <tr>
                     <td>{{ ++$i }}</td>
-                    {{-- <td>{{ $anggota->IUD }} <div class="mb-3">{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</div></td> --}}
-                    <td class align="center">{!! DNS1D::getBarcodeHTML('000000000', 'PHARMA2T') !!}</td>
+                    <td>{{ $anggota->IUD }} <div class="mb-3">{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</div></td>
+                    {{-- <td class align="center">{!! DNS1D::getBarcodeHTML('000000000', 'PHARMA2T') !!}</td> --}}
                     <td>{{ $anggota->nama }}</td>
                     <td>{{ $anggota->jk }}</td>
                     <td>{{ $anggota->no_hp }}</td>
@@ -119,7 +119,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Nomor Telepon:</strong>
-                                        <input min="0"type="number" name="no_hp" class="form-control" required placeholder="Nomor Telepon">
+                                        <input type="text" pattern="^[0-9]\d*$" minlength="10" maxlength="13" min="0" name="no_hp" class="form-control @error('no_hp') is-invalid @enderror" id="no_hp" value="{{ old('no_hp') }}"" required placeholder="Nomer Telepon">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">

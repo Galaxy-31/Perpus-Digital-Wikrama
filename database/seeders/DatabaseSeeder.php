@@ -29,5 +29,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'petugas@gmail.com',
             'password' => Hash::make('123'),
         ])->attachRole('Petugas');
+
+        \App\Models\User::create([
+            'name' => 'User',
+            'email' => 'petuserugas@gmail.com',
+            'password' => Hash::make('123'),
+        ])->attachRole('User');
     }
 }
