@@ -45,7 +45,11 @@ Route::group(['middleware' => ['auth']], function ()
 
     });
 
+    Route::group(['middleware' => ['role:User|Admin']], function ()
+    {
         Route::resource('/peminjamans', PeminjamanController::class);
+
+    });
 
 
 });

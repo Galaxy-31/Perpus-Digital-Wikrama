@@ -55,7 +55,12 @@ class BukuController extends Controller
             'penerbit' => $request->penerbit,
             'kategori' => $request->kategori,
             'tahun' => $request->tahun,
+            'foto' => 'nullable|image|file|max:1024',
         ]);
+
+        if($request->file('foto')) {
+            $data['foto'] = $request->file('foto')->store('image');
+        }
 
         return redirect()->route('bukus.index')->with('success', 'Buku Berhasil Di Tambahkan');
     }
@@ -78,7 +83,12 @@ class BukuController extends Controller
             'penerbit' => 'required',
             'kategori' => 'required',
             'tahun' => 'required',
+            'foto' => 'nullable|image|file|max:1024',
         ]);
+
+        if($request->file('foto')) {
+            $data['foto'] = $request->file('foto')->store('image');
+        }
 
         $buku->update($request->all());
 
