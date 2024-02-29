@@ -181,12 +181,14 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+
+
+        // package yang di gunakan
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Spatie\Html\HtmlServiceProvider::class,
-
         /*
          * Package Service Providers...
          */

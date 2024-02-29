@@ -33,8 +33,8 @@
             @foreach ($anggotas as $anggota)
                 <tr class align="center"> 
                     <td>{{ ++$i }}</td>
-                    <td>{{ $anggota->IUD }} <div class="mb-3">{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</div>
-                    </td>
+                    <td>{{ $anggota->IUD }} <div class="mb-3">{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</div></td>
+                    {{-- <td class align="center">{!! DNS1D::getBarcodeHTML('000000000', 'PHARMA2T') !!}</td> --}}
                     <td>{{ $anggota->nama }}</td>
                     <td>{{ $anggota->jk }}</td>
                     <td>{{ $anggota->no_hp }}</td>
@@ -100,43 +100,41 @@
                                         <input min="0"type="number" name="IUD" class="form-control" required
                                             placeholder="Nis Anggota">
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Nama Anggota:</strong>
-                                    <input type="text" name="nama" class="form-control" required
-                                        placeholder="Nama Anggota">
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Jenis Kelamin:</strong>
-                                    <input type="radio" name="jk" id="p" value="Perempuan">
-                                    <label for="p">Perempuan</label>
-                                    <input type="radio" name="jk" id="l" value="Laki-laki">
-                                    <label for="l">Laki-laki</label>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Nomor Telepon:</strong>
-                                    <input min="0"type="number" name="no_hp" class="form-control" required
-                                        placeholder="Nomor Telepon">
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Alamat:</strong>
-                                    <input type="text" name="alamat" class="form-control" required placeholder="Alamat">
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Nama Anggota:</strong>
+                                        <input type="text" name="nama" class="form-control" required placeholder="Nama Anggota">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Jenis Kelamin:</strong>
+                    <input type="radio"  name="jk" id="p" value="Perempuan">
+                    <label for="p">Perempuan</label>
+                    <input type="radio" name="jk" id="l" value="Laki-laki">
+                    <label for="l">Laki-laki</label>
+                </div>
+            </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Nomor Telepon:</strong>
+                                        <input min="0"type="number" name="no_hp" class="form-control" required placeholder="Nomor Telepon">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Alamat:</strong>
+                                        <input type="text" name="alamat" class="form-control" required placeholder="Alamat">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
                         </form>
                     </div>
 

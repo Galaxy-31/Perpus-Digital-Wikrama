@@ -27,6 +27,13 @@ class BukuController extends Controller
         return Excel::download(new BukusExport, 'Laporan Buku.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
     }
 
+    public function search(Request $request)
+    {
+        $keyword = $request->search;
+        $bukus = Buku::where('name', 'like', "%" . $keyword . "%")->paginate(5);
+        return view('bukus.index', compact('bukus'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
     public function create()
     {
         return view('bukus.create');
@@ -48,7 +55,12 @@ class BukuController extends Controller
             'penerbit' => $request->penerbit,
             'kategori' => $request->kategori,
             'tahun' => $request->tahun,
+            'foto' => 'nullable|image|file|max:1024',
         ]);
+
+        if($request->file('foto')) {
+            $data['foto'] = $request->file('foto')->store('image');
+        }
 
         return redirect()->route('bukus.index')->with('success', 'Buku Berhasil Di Tambahkan');
     }
@@ -71,7 +83,12 @@ class BukuController extends Controller
             'penerbit' => 'required',
             'kategori' => 'required',
             'tahun' => 'required',
+            'foto' => 'nullable|image|file|max:1024',
         ]);
+
+        if($request->file('foto')) {
+            $data['foto'] = $request->file('foto')->store('image');
+        }
 
         $buku->update($request->all());
 

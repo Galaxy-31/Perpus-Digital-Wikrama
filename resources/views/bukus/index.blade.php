@@ -13,6 +13,15 @@
                         Masukan Buku Baru
                     </a>
                 </div>
+                <div class align="right">
+                    <div class="form" method="get" action="{{ route('search') }}">
+                        <div class="form-group w-100 mb-3">
+                            {{-- <label for="search" class="d-block mr-2">Pencarian</label> --}}
+                            <input type="text" name="search" class="form-control w-15 d-inline" id="judul" placeholder="Cari Disini">
+                            <button type="submit" class="btn btn-primary mb-1">Cari</button>
+                        </div>
+                    </div>
+                </div>
                 <div class="dropdown w-auto" class align="right">
                     <a class="btn btn-success dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -27,9 +36,9 @@
             </div>
         </div>
         @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
         @endif
         <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
         <table class="table table-bordered,sortable">
@@ -37,6 +46,7 @@
                 <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
                 <th>No</th>
                 <th width="60px">ID Buku</th>
+                <th width="40px" height="30px">Cover Buku</th>
                 <th>Judul</th>
                 <th>Nama Pengarang</th>
                 <th>Nama Penerbit</th>
@@ -48,8 +58,9 @@
             @foreach ($bukus as $buku)
                 <tr class align="center">
                     <td>{{ ++$i }}</td>
-                    <td>{{ $buku->IUD }}<div class="mb-3">{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</div>
-                    </td>
+                    {{-- <td>{{ $buku->IUD }}<div class="mb-3">{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</div></td> --}}
+                    <td>{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</td>
+                    <td>{{ $buku->image }}</td>
                     <td>{{ $buku->judul }}</td>
                     <td>{{ $buku->pengarang }}</td>
                     <td>{{ $buku->penerbit }}</td>
@@ -111,6 +122,12 @@
                                 <div class="form-group">
                                     <strong>Judul:</strong>
                                     <input type="text" name="judul"required class="form-control" placeholder="Judul">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>Upload Foto:</strong>
+                                    <input type="file" name="image" required class="form-control">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -179,8 +196,7 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
+
+
 @endsection
