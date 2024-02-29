@@ -17,12 +17,12 @@ class BukuController extends Controller
         return view('bukus.index', compact('bukus'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    public function exportExcel() 
+    public function exportExcel()
     {
         return Excel::download(new BukusExport, 'Laporan Buku.xlsx');
     }
 
-    public function exportPDF() 
+    public function exportPDF()
     {
         return Excel::download(new BukusExport, 'Laporan Buku.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
     }
@@ -83,4 +83,3 @@ class BukuController extends Controller
         $buku->delete();return redirect()->route('bukus.index')->with('error', 'buku Berhasil Di hapus');
     }
 }
-
