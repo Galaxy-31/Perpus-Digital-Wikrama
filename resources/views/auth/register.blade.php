@@ -7,9 +7,9 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet"> --}}
     <!--Stylesheet-->
-    @include('auth.regcss')
+     @include('auth.regcss')
 </head>
 
 <body>
@@ -50,7 +50,7 @@
             </div>
         </div>
 
-        <div class="row mb-2">
+        {{-- <div class="row mb-2">
             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
             <div class="col-md-6">
@@ -72,6 +72,27 @@
             <div class="col-md-6">
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required
                 placeholder="Reenter Password" autocomplete="new-password">
+            </div>
+        </div> --}}
+        <div class="form-group row">
+            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+        
+            <div class="col-md-6">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+        
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <label for="password" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+        
+            <div class="col-md-6">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="current-password">
             </div>
         </div>
 
