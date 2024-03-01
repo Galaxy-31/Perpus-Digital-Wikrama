@@ -15,7 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes([  
+Auth::routes([
+    'register' => true
 ]);
 
 Route::group(['middleware' => ['auth']], function ()

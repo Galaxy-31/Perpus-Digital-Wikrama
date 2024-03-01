@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('components.master')
 
 <head>
     <!-- Design by foolishdeveloper.com -->
@@ -107,3 +106,4 @@
 </body>
 
 </html>
+@endsection
