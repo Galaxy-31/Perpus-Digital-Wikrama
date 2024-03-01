@@ -13,9 +13,6 @@
                         Masukan Anggota Baru
                     </a>
                 </div>
-                <!-- <div class="pull-right">
-<a class="btn btn-success" href="{{ route('anggotas.create') }}"> Create New anggota</a>
-</div> -->
             </div>
         </div>
         @if ($message = Session::get('success'))
@@ -23,7 +20,7 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        <table class="table table-bordered">
+        <table class="table table-bordered, mt-7">
             <tr class align="center">
                 <th>No</th>
                 <th width="80px">NIS</th>
@@ -34,7 +31,7 @@
                 <th width="190px">Action</th>
             </tr>
             @foreach ($anggotas as $anggota)
-                <tr>
+                <tr class align="center"> 
                     <td>{{ ++$i }}</td>
                     <td>{{ $anggota->IUD }} <div class="mb-3">{!! DNS1D::getBarcodeHTML('4445645656', 'PHARMA2T') !!}</div></td>
                     {{-- <td class align="center">{!! DNS1D::getBarcodeHTML('000000000', 'PHARMA2T') !!}</td> --}}
@@ -45,10 +42,13 @@
                     <td>
                         <form action="{{ route('anggotas.destroy', $anggota->id) }}" method="POST" class align="center">
                             {{-- <a class="btn btn-info" href="{{ route('anggotas.show', $anggota->id) }}"><i class="fa-solid fa-eye"></i></a> --}}
-                            <a class="btn btn-primary" href="{{ route('anggotas.edit', $anggota->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a class="btn btn-primary" href="{{ route('anggotas.edit', $anggota->id) }}"><i
+                                    class="fa-solid fa-pen-to-square"></i></a>
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin mau menghapus {{ $anggota->nama }}?')"><i class="fa-solid fa-trash-can"></i></button>
+                            <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('Yakin mau menghapus {{ $anggota->nama }}?')"><i
+                                    class="fa-solid fa-trash-can"></i></button>
                         </form>
                     </td>
                 </tr>
@@ -76,8 +76,8 @@
                                 </div>
 
                                 <!-- <div class="pull-right">
-                                    <a class="btn btn-primary" href="{{ route('anggotas.index') }}"> Back</a>
-                                </div> -->
+                                        <a class="btn btn-primary" href="{{ route('anggotas.index') }}"> Back</a>
+                                    </div> -->
                             </div>
                         </div>
                         @if ($errors->any())
@@ -128,7 +128,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Nomor Telepon:</strong>
-                                        <input type="text" pattern="^[0-9]\d*$" minlength="10" maxlength="13" min="0" name="no_hp" class="form-control @error('no_hp') is-invalid @enderror" id="no_hp" value="{{ old('no_hp') }}"" required placeholder="Nomer Telepon">
+                                        <input min="0"type="number" name="no_hp" class="form-control" required placeholder="Nomor Telepon">
                                     </div>
                                 </div>
                                 <div class="mb-4">
