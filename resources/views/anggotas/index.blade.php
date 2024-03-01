@@ -96,8 +96,12 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>NIS Anggota:</strong>
-
                                         <input min="0"type="number" name="IUD" class="form-control" required placeholder="Nis Anggota">
+                                        @error('anggota')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                     </div>
                                     </div>
                                 </div>
@@ -105,6 +109,11 @@
                                     <div class="form-group">
                                         <strong>Nama Anggota:</strong>
                                         <input type="text" name="nama" class="form-control" required placeholder="Nama Anggota">
+                                        @error('nama')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
@@ -122,11 +131,15 @@
                                         <input type="text" pattern="^[0-9]\d*$" minlength="10" maxlength="13" min="0" name="no_hp" class="form-control @error('no_hp') is-invalid @enderror" id="no_hp" value="{{ old('no_hp') }}"" required placeholder="Nomer Telepon">
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <strong>Alamat:</strong>
-                                        <input type="text" name="alamat" class="form-control" required placeholder="Alamat">
-                                    </div>
+                                <div class="mb-4">
+                                    <label for="alamat" class="form-label">Alamat <small style="color: red;">*</small></label>
+                                    <textarea class="form-control @error('alamat') is-invalid @enderror" rows="3" name="alamat" id="alamat">{{ old('alamat') }}</textarea>
+                                    <div id="alamat" class="form-text"><i class="fas fa-info-circle"></i> Alamat Rumah Siswa Smk Wikrama</div>
+                                    @error('alamat')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
