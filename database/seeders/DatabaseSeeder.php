@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::create([
             'name' => 'User',
-            'email' => 'petuserugas@gmail.com',
+            'email' => 'user@gmail.com',
             'password' => Hash::make('123'),
         ])->attachRole('User');
     }

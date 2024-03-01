@@ -122,26 +122,39 @@
                                 <div class="form-group">
                                     <strong>Judul:</strong>
                                     <input type="text" name="judul"required class="form-control" placeholder="Judul">
+                                    @error('judul')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Upload Foto:</strong>
-                                    <input type="file" name="image" required class="form-control">
+                                    <input type="file" name="foto" required class="form-control">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Nama Pengarang:</strong>
-                                    <input type="text" name="pengarang" required class="form-control"
-                                        placeholder="Nama Pengarang">
+                                    <input type="text" name="pengarang" required class="form-control" placeholder="Nama Pengarang">
+                                    @error('pengarang')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Nama Penerbit:</strong>
-                                    <input type="text" name="penerbit" required class="form-control"
-                                        placeholder="Nama Penerbit">
+                                    <input type="text" name="penerbit" required class="form-control" placeholder="Nama Penerbit">
+                                    @error('penerbit')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -163,8 +176,12 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Tahun Dirilis:</strong>
-                                    <input type="number" name="tahun" required class="form-control"
-                                        placeholder="Tahun Dirilis">
+                                    <input type="number" name="tahun" required class="form-control" placeholder="Tahun Dirilis">
+                                    @error('tahun')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 </div>
                             </div>
                             <!-- <select class="form-control" id="tahun" name="tahun">
